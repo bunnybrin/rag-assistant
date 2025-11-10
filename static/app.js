@@ -13,27 +13,20 @@ class ChatApp {
     }
 
     async init() {
-        this.sessionId = crypto.randomUUID();
-        console.log('Session created:', this.sessionId);
         this.setupWebSocket();
         this.setupEventListeners();
     }
 
     setupWebSocket() {
-        if (!this.sessionId) {
-            setTimeout(() => this.setupWebSocket(), 1000);
-            return;
-        }
-
         const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const wsUrl = `${protocol}//${window.location.host}/api/ws/chat/${this.sessionId}`;
+        const wsUrl = `${protocol}//${window.location.host}/api/ws/chat`;
 
         this.ws = new WebSocket(wsUrl);
 
         this.ws.onopen = () => {
             console.log('WebSocket connected');
             this.isConnected = true;
-            this.updateStatus('✅ Підключено');
+            this.updateStatus('⏳ Очікування sessionId...');
         };
 
         this.ws.onclose = () => {
@@ -56,6 +49,12 @@ class ChatApp {
         const message = JSON.parse(data);
 
         switch (message.type) {
+            case 'session':
+                this.sessionId = message.session_id;
+                console.log('Session ID отримано:', this.sessionId);
+                this.updateStatus('✅ Підключено');
+                break;
+
             case 'start':
                 this.showTypingIndicator();
                 break;
