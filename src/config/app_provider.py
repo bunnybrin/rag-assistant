@@ -5,6 +5,7 @@ from functools import cached_property
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 from src.vectorstore.chroma import ChromaVectorStoreProvider
+from llama_index.core import Settings
 
 
 class AppSettings(BaseSettings):
@@ -46,6 +47,7 @@ class AppSettings(BaseSettings):
 class ServiceFactory:
     def __init__(self, settings: AppSettings):
         self._settings = settings
+        Settings.embed_model = self.embedding_model
 
     @cached_property
     def llm(self) -> OpenAI:

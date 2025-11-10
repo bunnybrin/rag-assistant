@@ -2,6 +2,7 @@ from llama_index.core import  StorageContext, load_index_from_storage
 from llama_index.core.indices.base import BaseIndex
 from llama_index.vector_stores.chroma import ChromaVectorStore
 import chromadb
+from pathlib import Path
 
 
 class ChromaVectorStoreProvider:
@@ -31,7 +32,20 @@ class ChromaVectorStoreProvider:
         return index
 
     def index_exists(self) -> bool:
-        return True
+        storage_path = Path(self.persist_dir_storage)
+
+        docstore_exists = (storage_path / "docstore.json").exists()
+        index_store_exists = (storage_path / "index_store.json").exists()
+
+        collection_exists = False
+        try:
+            chroma_client = self._get_chroma_client()
+            chroma_client.get_collection(self.collection_name)
+            collection_exists = True
+        except:
+            pass
+
+        return docstore_exists and index_store_exists and collection_exists
 
 
     def get_collection_count(self) -> int:

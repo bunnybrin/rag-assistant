@@ -2,11 +2,11 @@ from dataclasses import dataclass
 
 from src.config import app_settings, service_factory
 from src.indexing.indexer import DocumentIndexer
+from llama_index.core.indices.base import BaseIndex
 
 
 @dataclass
 class IndexResult:
-
     num_documents: int
     success: bool
     message: str
@@ -23,6 +23,9 @@ class IndexingService:
             success=True,
             message=f"Successfully indexed nodes",
         )
+
+    def load_existing_index(self) -> BaseIndex:
+        return service_factory.vectorstore.load_index()
 
     def get_index_status(self) -> dict:
         exists = service_factory.vectorstore.index_exists()
