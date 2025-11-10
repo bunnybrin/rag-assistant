@@ -9,7 +9,7 @@ from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.core.storage.docstore import SimpleDocumentStore
 from llama_index.core.storage.index_store import SimpleIndexStore
 
-from src.config.app_provider import  app_provider
+from src.config import app_settings, service_factory
 
 
 class DocumentIndexer:
@@ -20,22 +20,22 @@ class DocumentIndexer:
     def _create_pipeline(self):
         transformations = [
             SentenceSplitter(
-                chunk_size=app_provider.chunk_size,
-                chunk_overlap=app_provider.chunk_overlap
+                chunk_size=app_settings.chunk_size,
+                chunk_overlap=app_settings.chunk_overlap
             ),
-            app_provider.embedding_model
+            service_factory.embedding_model
         ]
 
         self.pipeline = IngestionPipeline(
             transformations=transformations,
-            vector_store=app_provider.vectorstore.get_vector_store()
+            vector_store=service_factory.vectorstore.get_vector_store()
         )
 
     def load_documents(self) -> List[Document]:
-        print(f"📚 Завантаження документів з {app_provider.data_dir}...")
+        print(f"📚 Завантаження документів з {app_settings.data_dir}...")
 
         reader = SimpleDirectoryReader(
-            input_dir=app_provider.data_dir,
+            input_dir=app_settings.data_dir,
             recursive=True,
             required_exts=[".pdf", ".txt", ".md", ".docx"]
         )
@@ -55,7 +55,7 @@ class DocumentIndexer:
             show_progress=True
         )
 
-        vector_store = app_provider.vectorstore.get_vector_store()
+        vector_store = service_factory.vectorstore.get_vector_store()
 
         docstore = SimpleDocumentStore()
         index_store = SimpleIndexStore()
@@ -64,7 +64,7 @@ class DocumentIndexer:
             docstore=docstore,
             index_store=index_store,
             vector_store=vector_store,
-            persist_dir=app_provider.persist_dir,
+            persist_dir=app_settings.persist_dir,
         )
 
         storage_context.docstore.add_documents(nodes)
@@ -72,6 +72,7 @@ class DocumentIndexer:
         index = VectorStoreIndex(
             nodes=nodes,
             storage_context=storage_context,
+            embed_model=service_factory.embedding_model,
             show_progress=False,
             store_nodes_override=True
         )
