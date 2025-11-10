@@ -6,6 +6,8 @@ from llama_index.core.indices.base import BaseIndex
 
 from src.retrieval.citations import CitationExtractor
 
+SOURCES_MARKER = "\n\n---SOURCES---\n"
+
 
 class ChatService:
     def __init__(self, index: BaseIndex):
@@ -50,7 +52,7 @@ class ChatService:
                 yield text
 
             sources = self._extract_sources(streaming_response)
-            yield "\n\n---SOURCES---\n"
+            yield SOURCES_MARKER
             yield json.dumps(sources, ensure_ascii=False)
         except Exception as e:
             yield f"\n\nПомилка: {str(e)}"

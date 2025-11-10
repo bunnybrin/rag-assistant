@@ -1,4 +1,4 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, HTTPException
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from typing import List, Dict
 import json
@@ -7,6 +7,8 @@ import uuid
 from src.api.dependencies import get_chat_service
 
 router = APIRouter()
+
+SOURCES_MARKER = "\n\n---SOURCES---\n"
 
 
 class ChatRequest(BaseModel):
@@ -80,12 +82,13 @@ async def websocket_chat(websocket: WebSocket):
             sources = []
 
             async for chunk in chat_service.chat_stream(session_id, message):
-                if chunk.startswith("\n\n---SOURCES---\n"):
-                    sources_json = chunk.replace("\n\n---SOURCES---\n", "")
+                if chunk.startswith(SOURCES_MARKER):
+                    sources_json = chunk.replace(SOURCES_MARKER, "")
                     try:
                         sources = json.loads(sources_json)
-                    except:
-                        pass
+                    except json.JSONDecodeError as e:
+                        print(f"Помилка парсингу джерел: {e}")
+                        sources = []
                 else:
                     full_response.append(chunk)
                     await websocket.send_json({
