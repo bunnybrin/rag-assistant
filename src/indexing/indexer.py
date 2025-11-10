@@ -1,5 +1,6 @@
 from typing import List
 from llama_index.core import Document, SimpleDirectoryReader
+from llama_index.core.extractors import SummaryExtractor, QuestionsAnsweredExtractor
 from llama_index.core.ingestion import IngestionPipeline
 from llama_index.core.node_parser import (
     SentenceSplitter,
@@ -11,6 +12,28 @@ from llama_index.core.storage.index_store import SimpleIndexStore
 
 from src.config import app_settings, service_factory
 
+DEFAULT_SUMMARY_EXTRACT_TEMPLATE = """
+Ось зміст розділу:
+{context_str}
+
+Підсумуйте основні теми та поняття розділу. 
+
+Підсумок: """
+
+
+DEFAULT_QUESTION_GEN_TMPL = """\
+Ось контекст:
+{context_str}
+
+З огляду на контекстну інформацію, \
+створіть {num_questions} питань, на які цей контекст може надати \
+конкретні відповіді, які навряд чи можна знайти деінде.
+
+Також можуть бути надані більш загальні резюме навколишнього контексту. \
+Спробуйте використовувати ці резюме, щоб створити кращі питання, \
+на які цей контекст може відповісти.
+
+"""
 
 class DocumentIndexer:
 
@@ -23,6 +46,8 @@ class DocumentIndexer:
                 chunk_size=app_settings.chunk_size,
                 chunk_overlap=app_settings.chunk_overlap
             ),
+            SummaryExtractor(prompt_template=DEFAULT_SUMMARY_EXTRACT_TEMPLATE),
+            QuestionsAnsweredExtractor(prompt_template=DEFAULT_SUMMARY_EXTRACT_TEMPLATE, ),
             service_factory.embedding_model
         ]
 

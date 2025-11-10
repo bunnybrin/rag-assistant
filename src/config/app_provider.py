@@ -47,6 +47,7 @@ class AppSettings(BaseSettings):
 class ServiceFactory:
     def __init__(self, settings: AppSettings):
         self._settings = settings
+        Settings.llm = self.llm
         Settings.embed_model = self.embedding_model
 
     @cached_property
