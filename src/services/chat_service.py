@@ -30,18 +30,18 @@ class ChatService:
             return self.citation_extractor.extract_sources(response.source_nodes)
         return []
 
-    # async def chat(self, session_id: str, message: str) -> Dict:
-    #     try:
-    #         chat_engine = self._get_or_create_chat_engine(session_id)
-    #         response = chat_engine.chat(message)
-    #
-    #         return {
-    #             "response": str(response),
-    #             "sources": self._extract_sources(response),
-    #             "session_id": session_id
-    #         }
-    #     except Exception as e:
-    #         raise RuntimeError(f"Помилка під час обробки повідомлення: {str(e)}")
+    async def chat(self, session_id: str, message: str) -> Dict:
+        try:
+            chat_engine = self._get_or_create_chat_engine(session_id)
+            response = chat_engine.chat(message)
+
+            return {
+                "response": str(response),
+                "sources": self._extract_sources(response),
+                "session_id": session_id
+            }
+        except Exception as e:
+            raise RuntimeError(f"Помилка під час обробки повідомлення: {str(e)}")
 
     async def chat_stream(self, session_id: str, message: str) -> AsyncIterator[str]:
         try:
