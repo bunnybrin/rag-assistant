@@ -1,25 +1,34 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <Button label="Button" />
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Toast />
+  <ChatLayout />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup>
+import { onMounted, onUnmounted, watch } from 'vue';
+import { useToast } from 'primevue/usetoast';
+import Toast from 'primevue/toast';
+import ChatLayout from './components/chat/ChatLayout.vue';
+import { useChatStore } from './stores/chat';
+
+const chatStore = useChatStore();
+const toast = useToast();
+
+watch(() => chatStore.error, (newError) => {
+  if (newError) {
+    toast.add({
+      severity: 'error',
+      summary: 'Помилка',
+      detail: newError,
+      life: 5000
+    });
+  }
+});
+
+onMounted(async () => {
+  await chatStore.connect();
+});
+
+onUnmounted(() => {
+  chatStore.disconnect();
+});
+</script>
