@@ -56,15 +56,16 @@ class ChatApp {
                 break;
 
             case 'start':
-                this.showTypingIndicator();
+                // this.showTypingIndicator();
                 break;
 
             case 'stream':
-                this.appendToLastMessage(message.content);
+                // this.appendToLastMessage(message.content);
                 break;
 
             case 'end':
                 this.hideTypingIndicator();
+                this.appendToLastMessage(message.content);
                 if (message.sources && message.sources.length > 0) {
                     this.showSources(message.sources);
                 }
@@ -102,8 +103,9 @@ class ChatApp {
 
         this.ws.send(JSON.stringify({ message }));
 
-        this.currentAssistantMessage = this.createMessageElement('assistant', '');
-        this.chatArea.appendChild(this.currentAssistantMessage);
+        this.showTypingIndicator();
+        // this.currentAssistantMessage = this.createMessageElement('assistant', '');
+        // this.chatArea.appendChild(this.currentAssistantMessage);
 
         setTimeout(() => {
             this.sendButton.disabled = false;
