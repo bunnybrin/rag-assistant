@@ -73,33 +73,14 @@ async def websocket_chat(websocket: WebSocket):
                 })
                 continue
 
-            await websocket.send_json({
-                "type": "start",
-                "message": "Обробка запиту..."
-            })
 
-            full_response = []
-            sources = []
-
-            async for chunk in chat_service.chat_stream(session_id, message):
-                if chunk.startswith(SOURCES_MARKER):
-                    sources_json = chunk.replace(SOURCES_MARKER, "")
-                    try:
-                        sources = json.loads(sources_json)
-                    except json.JSONDecodeError as e:
-                        print(f"Помилка парсингу джерел: {e}")
-                        sources = []
-                else:
-                    full_response.append(chunk)
-                    await websocket.send_json({
-                        "type": "stream",
-                        "content": chunk
-                    })
+            result = await chat_service.chat(session_id, message)
 
             await websocket.send_json({
                 "type": "end",
-                "sources": sources,
-                "full_response": "".join(full_response)
+                "content": result["response"],
+                "sources": result["sources"],
+                "session_id": result["session_id"]
             })
 
     except WebSocketDisconnect:
