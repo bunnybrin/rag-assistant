@@ -27,7 +27,7 @@ watch(() => chatStore.error, (newError) => {
 });
 
 onMounted(async () => {
-  await chatStore.connect();
+  chatStore.connect();
   documentsStore.fetchDocuments();
 });
 
