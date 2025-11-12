@@ -10,7 +10,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-          <ChatMode v-model="currentMode"/>
+          <ChatMode :model-value="currentMode" @update:model-value="setActiveTab"/>
         </div>
       </div>
     </header>
@@ -28,11 +28,15 @@
 </template>
 
 <script setup>
-import { ref} from 'vue';
 import ChatMode from './ChatMode.vue';
 import MessageList from "./MessageList.vue";
 import ChatInput from "./ChatInput.vue";
 import SourcesView from "./SourcesView.vue";
+import {useUrlTabs} from "../../utils/useUrlTabs.js";
 
-const currentMode = ref('chatbot');
+const { activeTab: currentMode, setActiveTab } = useUrlTabs({
+  tabs: ['chatbot', 'sources'],
+  defaultTab: 'chatbot',
+  paramName: 'mode'
+});
 </script>
