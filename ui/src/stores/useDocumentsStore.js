@@ -22,6 +22,10 @@ export const useDocumentsStore = defineStore('documents', () => {
     }
   }
 
+  const previewDocument = async (id) => {
+     return await DocumentsRepository.previewDocuments(id)
+  }
+
   const reset = () => {
     documents.value = []
     error.value = null
@@ -32,6 +36,7 @@ export const useDocumentsStore = defineStore('documents', () => {
     isLoading,
     error,
     fetchDocuments,
+    previewDocument,
     reset,
   }
 })

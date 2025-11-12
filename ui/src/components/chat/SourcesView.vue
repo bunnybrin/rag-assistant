@@ -12,8 +12,8 @@
 
     <div v-else class="flex-1 overflow-auto">
       <DataTable
-        :value="documentsStore.isLoading ? new Array(4) : documentsStore.documents"
-        class="text-md"
+          :value="documentsStore.isLoading ? new Array(4) : documentsStore.documents"
+          class="text-md"
       >
         <template #empty v-if="documentsStore.isLoading">
           <div class="text-center text-gray-500 py-8">
@@ -26,8 +26,8 @@
         <Column header="" class="w-[24px] !pr-0">
           <template #body="{ data }">
             <div class="flex items-center justify-center w-[24px] h-[24px]">
-              <Skeleton width="1.5rem" height="1.5rem" v-if="documentsStore.isLoading" />
-              <i :class="getFileIcon(data.fileType)"  v-else class="text-2xl text-gray-600"></i>
+              <Skeleton width="1.5rem" height="1.5rem" v-if="documentsStore.isLoading"/>
+              <i :class="getFileIcon(data.fileType)" v-else class="text-2xl text-gray-600"></i>
             </div>
           </template>
         </Column>
@@ -68,21 +68,36 @@
           </template>
         </Column>
 
-         <Column field="fileType"  class="w-32">
+        <Column field="fileType" class="w-32">
           <template #body="{ data }">
             <Skeleton width="1.5rem" height="1.5rem" v-if="documentsStore.isLoading"/>
             <Button
-              icon="pi pi-eye"
-              size="small"
-              @click="()=>{}"
-              icon-pos="right"
-              severity="contrast"
-              class="flex-shrink-0"
+                v-else
+                icon="pi pi-eye"
+                size="small"
+                @click="(event) => toggleMenu(event, data)"
+                icon-pos="right"
+                severity="contrast"
+                class="flex-shrink-0"
             />
           </template>
         </Column>
       </DataTable>
     </div>
+
+    <Menu ref="menu" :model="menuItems" :popup="true"/>
+
+    <Dialog
+        v-model:visible="showParsedDialog"
+        :header="selectedDocument?.name || 'Парсений текст'"
+        :modal="true"
+        class="w-full max-w-4xl"
+        :dismissableMask="true"
+    >
+      <div class="max-h-[70vh] overflow-auto p-4 bg-gray-50 rounded border border-gray-200">
+        <pre class="whitespace-pre-wrap text-sm text-gray-800 font-mono">{{ parsedText }}</pre>
+      </div>
+    </Dialog>
   </div>
 </template>
 
@@ -94,8 +109,16 @@ import Column from 'primevue/column';
 import Badge from 'primevue/badge';
 import Skeleton from 'primevue/skeleton';
 import Button from "primevue/button";
+import Menu from 'primevue/menu';
+import Dialog from 'primevue/dialog';
+import {ref} from 'vue';
 
 const documentsStore = useDocumentsStore();
+
+const menu = ref();
+const selectedDocument = ref(null);
+const showParsedDialog = ref(false);
+const parsedText = ref('');
 
 const getFileIcon = (fileType) => {
   const type = fileType?.toLowerCase();
@@ -130,4 +153,37 @@ const getStatusSeverity = (status) => {
   if (statusLower === 'pending') return 'warning';
   return 'secondary';
 };
+
+const toggleMenu = (event, document) => {
+  selectedDocument.value = document;
+  menu.value.toggle(event);
+};
+
+const openRawFile = async () => {
+  const res = await documentsStore.previewDocument(selectedDocument.value.id);
+
+  const response = await fetch(res.url);
+  const blob = await response.blob();
+  const blobUrl = URL.createObjectURL(blob);
+
+  window.open(blobUrl, '_blank');
+};
+
+const openParsedFile = () => {
+  parsedText.value = selectedDocument.value.text || 'Текст не доступний';
+  showParsedDialog.value = true;
+};
+
+const menuItems = ref([
+  {
+    label: 'Raw File',
+    icon: 'pi pi-file',
+    command: openRawFile
+  },
+  {
+    label: 'Parsed File',
+    icon: 'pi pi-file-edit',
+    command: openParsedFile
+  }
+]);
 </script>

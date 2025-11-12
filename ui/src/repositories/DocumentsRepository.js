@@ -13,7 +13,7 @@ export class DocumentsRepository {
     const response = await http.get(`/api/files/${id}`);
     
     return {
-      url: response.data.url,
+      url: response.data,
     }
    
   }
