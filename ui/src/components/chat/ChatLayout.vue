@@ -15,8 +15,8 @@
       </div>
     </header>
 
-    <div class="flex flex-1 overflow-hidden bg-gray-50">
-      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full max-h-[calc(100vh-75px)]">
+    <div class="flex flex-1 bg-gray-50">
+      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full h-full max-h-[calc(100vh-75px)]">
         <template v-if="currentMode === 'chatbot'" >
           <MessageList/>
           <ChatInput/>
