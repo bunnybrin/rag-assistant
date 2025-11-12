@@ -1,11 +1,11 @@
 <template>
-  <ScrollPanel ref="scrollPanel" class="flex-1">
+  <ScrollPanel ref="scrollPanel" class="flex-1 h-full">
     <div class="p-6">
       <div v-if="messages.length === 0" class="flex flex-col items-center justify-center h-full min-h-[400px]">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">
           <span class="text-4xl">🦙</span>
         </div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2 text-center">
           Welcome to your RAG Playground! 🤖
         </h1>
         <p class="text-gray-600 text-center max-w-2xl mb-4">
