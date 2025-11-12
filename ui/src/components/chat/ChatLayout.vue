@@ -16,21 +16,23 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden bg-gray-50">
-      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full">
-        <div v-if="currentMode === 'chatbot'" class="flex flex-col max-h-[calc(100vh-75px)]">
+      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full max-h-[calc(100vh-75px)]">
+        <template v-if="currentMode === 'chatbot'" >
           <MessageList/>
           <ChatInput/>
-        </div>
+        </template>
+        <SourcesView v-else-if="currentMode === 'sources'"/>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { ref} from 'vue';
 import ChatMode from './ChatMode.vue';
 import MessageList from "./MessageList.vue";
 import ChatInput from "./ChatInput.vue";
+import SourcesView from "./SourcesView.vue";
 
 const currentMode = ref('chatbot');
 </script>
