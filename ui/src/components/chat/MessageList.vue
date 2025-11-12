@@ -31,7 +31,7 @@
 import { ref, watch, nextTick } from 'vue';
 import ScrollPanel from 'primevue/scrollpanel';
 import MessageItem from './MessageItem.vue';
-import { useChatStore } from '../../stores/chat';
+import { useChatStore } from '../../stores/useChatStore.js';
 
 const chatStore = useChatStore();
 const messages = chatStore.messages;

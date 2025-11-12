@@ -8,7 +8,7 @@ import { onMounted, onUnmounted, watch } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import Toast from 'primevue/toast';
 import ChatLayout from './components/chat/ChatLayout.vue';
-import { useChatStore } from './stores/chat';
+import { useChatStore } from './stores/useChatStore.js';
 
 const chatStore = useChatStore();
 const toast = useToast();

@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+
+.p-datatable-table-container {
+    border-radius: var(--radius-md);
+}
+
+.p-datatable-tbody > tr:last-of-type td {
+    border-bottom: none;
+}

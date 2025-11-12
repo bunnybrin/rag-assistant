@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 bg-white border-t border-gray-200">
+  <div class="p-4 bg-white  rounded-2xl shadow-xs mb-12">
     <div class="flex gap-3 items-end max-w-4xl mx-auto">
       <Textarea
         v-model="inputMessage"
@@ -29,7 +29,7 @@
 import { ref, computed } from 'vue';
 import Textarea from 'primevue/textarea';
 import Button from 'primevue/button';
-import { useChatStore } from '../../stores/chat';
+import { useChatStore } from '../../stores/useChatStore.js';
 
 const chatStore = useChatStore();
 
