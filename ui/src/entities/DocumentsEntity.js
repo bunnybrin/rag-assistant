@@ -1,3 +1,5 @@
+import {formatFileSize} from "../utils/fileSize.js";
+
 export class DocumentEntity {
   constructor(document) {
     this.text = document.text
@@ -6,6 +8,15 @@ export class DocumentEntity {
     this.pipleneId = document.id
     this.status = document['status_metadata'].status
     this.error = document['status_metadata'].error
+    this._fileSize = document.metadata.file_size
+  }
+  
+  get fileType() {
+    return this.name.split('.')[1]
+  }
+  
+  get fileSize() {
+    return formatFileSize(this._fileSize)
   }
   
   static create(documents) {

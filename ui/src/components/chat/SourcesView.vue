@@ -1,7 +1,10 @@
 <template>
   <div class="h-full">
     <div :key="doc.id" v-for="doc in sdf" class="p-4 border-b border-gray-200 text-gray-900 whitespace-pre-wrap">
-      {{ doc.text }}
+      {{ doc.name }}
+      {{ doc.status }}
+      {{ doc.fileType }}
+      {{ doc.fileSize }}
     </div>
   </div>
 </template>
