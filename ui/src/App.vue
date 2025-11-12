@@ -9,7 +9,9 @@ import { useToast } from 'primevue/usetoast';
 import Toast from 'primevue/toast';
 import ChatLayout from './components/chat/ChatLayout.vue';
 import { useChatStore } from './stores/useChatStore.js';
+import {useDocumentsStore} from "./stores/useDocumentsStore.js";
 
+const documentsStore = useDocumentsStore();
 const chatStore = useChatStore();
 const toast = useToast();
 
@@ -26,6 +28,7 @@ watch(() => chatStore.error, (newError) => {
 
 onMounted(async () => {
   await chatStore.connect();
+  documentsStore.fetchDocuments();
 });
 
 onUnmounted(() => {

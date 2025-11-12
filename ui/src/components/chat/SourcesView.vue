@@ -32,7 +32,7 @@
           </template>
         </Column>
 
-        <Column field="name" header="File Name" class="min-w-[300px]">
+        <Column field="name" header="Назва файла" class="min-w-[300px]">
           <template #body="{ data }">
             <Skeleton width="80%" height="1.5rem" v-if="documentsStore.isLoading"/>
             <div class="font-medium text-gray-900 truncate" :title="data.name" v-else>
@@ -41,7 +41,7 @@
           </template>
         </Column>
 
-        <Column field="status" header="Status" class="w-32">
+        <Column field="status" header="Статус" class="w-32">
           <template #body="{ data }">
             <Skeleton width="5rem" height="1.5rem" borderRadius="16px" v-if="documentsStore.isLoading"/>
             <Badge
@@ -52,19 +52,33 @@
           </template>
         </Column>
 
-        <Column field="fileSize" header="File Size" class="w-32">
+        <Column field="fileSize" header="Розмір" class="w-32">
           <template #body="{ data }">
             <Skeleton width="4rem" height="1.5rem" v-if="documentsStore.isLoading"/>
             <span class="text-gray-700" v-else>{{ data.fileSize }}</span>
           </template>
         </Column>
 
-        <Column field="fileType" header="File Type" class="w-32">
+        <Column field="fileType" header="Тип" class="w-32">
           <template #body="{ data }">
             <Skeleton width="3rem" height="1.5rem" v-if="documentsStore.isLoading"/>
             <span class="text-gray-600 uppercase font-mono text-xs" v-else>
               {{ data.fileType || 'N/A' }}
             </span>
+          </template>
+        </Column>
+
+         <Column field="fileType"  class="w-32">
+          <template #body="{ data }">
+            <Skeleton width="1.5rem" height="1.5rem" v-if="documentsStore.isLoading"/>
+            <Button
+              icon="pi pi-eye"
+              size="small"
+              @click="()=>{}"
+              icon-pos="right"
+              severity="contrast"
+              class="flex-shrink-0"
+            />
           </template>
         </Column>
       </DataTable>
@@ -74,12 +88,12 @@
 
 <script setup>
 
-import {onMounted} from "vue";
 import {useDocumentsStore} from "../../stores/useDocumentsStore.js";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Badge from 'primevue/badge';
 import Skeleton from 'primevue/skeleton';
+import Button from "primevue/button";
 
 const documentsStore = useDocumentsStore();
 
@@ -116,8 +130,4 @@ const getStatusSeverity = (status) => {
   if (statusLower === 'pending') return 'warning';
   return 'secondary';
 };
-
-onMounted(() => {
-  documentsStore.fetchDocuments();
-});
 </script>

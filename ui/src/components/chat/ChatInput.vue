@@ -3,7 +3,7 @@
     <div class="flex gap-3 items-end max-w-4xl mx-auto">
       <Textarea
         v-model="inputMessage"
-        placeholder="Type a message"
+        placeholder="Запитайте будь-що"
         :autoResize="true"
         rows="1"
         :maxRows="6"
@@ -12,7 +12,7 @@
         @keydown.enter.exact.prevent="handleSend"
       />
       <Button
-        label="Send message"
+        label="Відправити"
         icon="pi pi-send"
         :disabled="!canSend"
         :loading="chatStore.isLoading"
