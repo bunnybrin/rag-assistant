@@ -45,7 +45,7 @@ synth = get_response_synthesizer(
     simple_template=simple_template
 )
 
-retriever = index.as_retriever(similarity_top_k=30, rerank_top_n=6, enable_reranking=True,  retrieval_mode='chunks')
+retriever = index.as_retriever(similarity_top_k=30, rerank_top_n=10, enable_reranking=True, retrieval_mode='chunks')
 
 
 # nodes = retriever.retrieve('з яких джерел ти можеш надати інформацію?')
@@ -56,13 +56,13 @@ query_engine = RetrieverQueryEngine.from_args(
 )
 
 
-response = query_engine.query("з яких джерел ти можеш надати інформацію?")
+# response = query_engine.query("з яких джерел ти можеш надати інформацію?")
 # response = query_engine.query("С каких источников ти можеш надать информацию?")
-print("Відповідь з цитатами:")
-print(response)
-
-response2 = query_engine.query("Роскажи про документ наведений в 2 пункті")
-print(response2)
+# print("Відповідь з цитатами:")
+# print(response)
+#
+# response2 = query_engine.query("Роскажи про документ наведений в 2 пункті")
+# print(response2)
 
 
 
