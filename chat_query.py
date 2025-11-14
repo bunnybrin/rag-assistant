@@ -3,12 +3,16 @@ from llama_index.core.memory import ChatMemoryBuffer
 
 from single_query import retriever, synth
 
-memory = ChatMemoryBuffer.from_defaults(token_limit=2000)
+memory = ChatMemoryBuffer.from_defaults(token_limit=4096)
 
 chat_engine = ContextChatEngine.from_defaults(
     retriever=retriever,
     memory=memory,
     response_synthesizer=synth,
+    system_prompt="Ти - помічник, який надає відповіді на основі наданих документів. "
+                  "Завжди посилайся на конкретні джерела в своїх відповідях. "
+                  "Якщо користувач посилається на попередню відповідь (наприклад, 'пункт 2', 'документ який ти згадав'), "
+                  "використовуй інформацію з історії розмови для точної відповіді."
 )
 
 print("ПИтання 1:")
