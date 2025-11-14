@@ -16,6 +16,7 @@ class AppSettings(BaseSettings):
     )
 
     openai_api_key: str = Field(..., description="OpenAI API key")
+    llama_cloud_api_key: str = Field(..., description="LLamaClaude API key")
     chunk_size: int = Field(default=100, gt=0, description="Chunk size for text splitting")
     chunk_overlap: int = Field(default=50, ge=0, description="Chunk overlap for text splitting")
     data_dir: str = Field(default="./data", description="Directory for data files")

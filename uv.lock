@@ -1241,6 +1241,39 @@ wheels = [
 ]
 
 [[package]]
+name = "llama-cloud"
+version = "0.1.44"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "httpx" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/54/eb/16e31fb0fc4df91b08fa19cc3f28ac6e3c7d4df0bcbb71dd2bf596e9586f/llama_cloud-0.1.44.tar.gz", hash = "sha256:276a2b4f94463da037431ca3063331b3b6be398bbfb003113ee76b7c2a873b53", size = 120502, upload-time = "2025-11-04T00:51:58.578Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/69/0a/fabe54c21d5927d626550cb9560a20e51e42468355f5f0fb300f84806e28/llama_cloud-0.1.44-py3-none-any.whl", hash = "sha256:dfdcc4932353711fc8639f14261cbb54a88139b7790ebdd3ed4fde29bbbc0b88", size = 332779, upload-time = "2025-11-04T00:51:57.371Z" },
+]
+
+[[package]]
+name = "llama-cloud-services"
+version = "0.6.79"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "llama-cloud" },
+    { name = "llama-index-core" },
+    { name = "packaging" },
+    { name = "platformdirs" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "tenacity" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/44/19/d4ea4fb1b9f17d1453f3feeede5e8002532c91f54392f1e6719ebedb2c82/llama_cloud_services-0.6.79.tar.gz", hash = "sha256:0b19a9a7f790f842c0385c268c02c40a4c4873a8cd2a6a228085a1f22a06dd63", size = 57474, upload-time = "2025-11-04T19:19:29.872Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/c1/a20fdb066d12ef364e1123ff9ef35e23370123dd4d8ead7cf5afa9f862a1/llama_cloud_services-0.6.79-py3-none-any.whl", hash = "sha256:6a68734ce45bc36dd2797c20e8d1e28cc7b49d818e32b5f75376f26385573566", size = 68862, upload-time = "2025-11-04T19:19:28.617Z" },
+]
+
+[[package]]
 name = "llama-index-core"
 version = "0.14.7"
 source = { registry = "https://pypi.org/simple" }
@@ -2889,6 +2922,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "chromadb" },
     { name = "fastapi" },
+    { name = "llama-cloud-services" },
     { name = "llama-index-core" },
     { name = "llama-index-embeddings-openai" },
     { name = "llama-index-llms-openai" },
@@ -2905,6 +2939,7 @@ dependencies = [
 requires-dist = [
     { name = "chromadb", specifier = ">=1.3.4" },
     { name = "fastapi", specifier = ">=0.115.0" },
+    { name = "llama-cloud-services", specifier = ">=0.6.79" },
     { name = "llama-index-core", specifier = ">=0.14.7" },
     { name = "llama-index-embeddings-openai", specifier = ">=0.5.1" },
     { name = "llama-index-llms-openai", specifier = ">=0.6.7" },

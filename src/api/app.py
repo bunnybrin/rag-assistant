@@ -7,7 +7,7 @@ from src.config import service_factory
 from src.services.indexing_service import IndexingService
 from src.services.chat_service import ChatService
 from src.api.dependencies import set_chat_service
-from src.api.routes import chat, system
+from src.api.routes import chat, system, pipelines
 
 
 @asynccontextmanager
@@ -48,6 +48,8 @@ app.add_middleware(
 
 app.include_router(system, tags=["system"])
 app.include_router(chat, prefix="/api", tags=["chat"])
+
+app.include_router(pipelines, prefix="/api", tags=["pipelines"])
 
 try:
     app.mount("/", StaticFiles(directory="static", html=True), name="static")

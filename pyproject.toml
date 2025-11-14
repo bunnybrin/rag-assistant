@@ -16,4 +16,5 @@ dependencies = [
     "fastapi>=0.115.0",
     "uvicorn>=0.34.0",
     "websockets>=14.1",
+    "llama-cloud-services>=0.6.79",
 ]
