@@ -49,6 +49,6 @@ app.include_router(chat, prefix="/api", tags=["chat"])
 app.include_router(pipelines, prefix="/api", tags=["pipelines"])
 
 try:
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+    app.mount("/", StaticFiles(directory="ui/dist", html=True), name="static")
 except RuntimeError:
     print("⚠️ Static not found")

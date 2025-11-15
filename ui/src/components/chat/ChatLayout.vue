@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-screen bg-white">
     <header class="border-b border-gray-100 bg-white px-6 py-4">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between flex-col md:flex-row">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
             <span class="text-2xl">👀</span>
@@ -16,11 +16,11 @@
     </header>
 
     <div class="flex flex-1 bg-gray-50 px-12 py-8">
-      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full h-full max-h-[calc(100vh-75px)]">
-        <template v-if="currentMode === 'chatbot'" >
+      <div class="flex-1 flex flex-col min-w-0 max-w-4xl mx-auto w-full h-full max-h-[500px]">
+        <div v-if="currentMode === 'chatbot'" class="flex flex-col flex-1 h-full">
           <MessageList/>
           <ChatInput/>
-        </template>
+        </div>
         <SourcesView v-else-if="currentMode === 'sources'"/>
       </div>
     </div>

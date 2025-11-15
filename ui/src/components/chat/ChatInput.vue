@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 bg-white  rounded-2xl shadow-xs mb-12">
+  <div class="p-4 bg-white  rounded-2xl shadow-xs">
     <div class="flex gap-3 items-end max-w-4xl mx-auto">
       <Textarea
         v-model="inputMessage"

@@ -1,7 +1,7 @@
 <template>
-  <ScrollPanel ref="scrollPanel" class="flex-1 h-full">
+  <ScrollPanel ref="scrollPanel" class="" style="height: 100%">
     <div class="p-6">
-      <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full min-h-[400px]">
+      <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">
           <span class="text-4xl">🦙</span>
         </div>
