@@ -1,5 +1,5 @@
 <template>
-  <ScrollPanel ref="scrollPanel" class="" style="height: 100%">
+  <ScrollPanel ref="scrollPanel" class="" style="height: 100%; padding-bottom: 14px;">
     <div class="p-6 h-full">
       <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">

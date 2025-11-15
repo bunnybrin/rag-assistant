@@ -3,6 +3,7 @@ from llama_index.core.indices.managed import BaseManagedIndex
 from llama_index.core.memory import ChatMemoryBuffer
 
 from src.config.chat_prompts import system_prompt, context_template, context_refine_template
+from src.engine.citation_processor import CitationNodePostprocessor
 
 
 class ChatEngine:
@@ -12,12 +13,15 @@ class ChatEngine:
         self.retriever = index.as_retriever(similarity_top_k=30, rerank_top_n=10, enable_reranking=True,
                                             retrieval_mode='chunks')
 
+        self.citation_processor = CitationNodePostprocessor()
+
         self.chat_engine = ContextChatEngine.from_defaults(
             retriever=self.retriever,
             memory=self.memory,
             system_prompt=system_prompt,
             context_template=context_template,
-            context_refine_template=context_refine_template
+            context_refine_template=context_refine_template,
+            node_postprocessors=[self.citation_processor]
         )
 
     def chat(self, message: str):
