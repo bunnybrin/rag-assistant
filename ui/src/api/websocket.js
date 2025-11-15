@@ -7,6 +7,7 @@ export const WebSocketState = {
 
 export const MessageType = {
   SESSION: 'session',
+  TOKEN: 'token',
   END: 'end',
   ERROR: 'error'
 }
@@ -87,6 +88,13 @@ export class WebSocketClient {
     switch (type) {
       case MessageType.SESSION:
         this.#emit('session', data.session_id)
+        break
+
+      case MessageType.TOKEN:
+        this.#emit('token', {
+          content: data.content,
+          sessionId: data.session_id
+        })
         break
 
       case MessageType.END:

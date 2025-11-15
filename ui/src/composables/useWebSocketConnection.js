@@ -8,6 +8,7 @@ export function useWebSocketConnection() {
 
   let eventHandlers = {
     onSessionId: null,
+    onToken: null,
     onMessage: null,
     onError: null,
     onClose: null,
@@ -33,12 +34,17 @@ export function useWebSocketConnection() {
     eventHandlers.onSessionId?.(id)
   }
 
+  const handleToken = (data) => {
+    eventHandlers.onToken?.(data)
+  }
+
   const handleMessage = (data) => {
     eventHandlers.onMessage?.(data)
   }
 
   const setupListeners = () => {
     websocket.on('session', handleSessionId)
+    websocket.on('token', handleToken)
     websocket.on('message', handleMessage)
     websocket.on('error', handleError)
     websocket.on('close', handleClose)
@@ -47,6 +53,7 @@ export function useWebSocketConnection() {
 
   const removeListeners = () => {
     websocket.off('session', handleSessionId)
+    websocket.off('token', handleToken)
     websocket.off('message', handleMessage)
     websocket.off('error', handleError)
     websocket.off('close', handleClose)
@@ -76,6 +83,7 @@ export function useWebSocketConnection() {
     isConnected.value = false
     eventHandlers = {
       onSessionId: null,
+      onToken: null,
       onMessage: null,
       onError: null,
       onClose: null,
