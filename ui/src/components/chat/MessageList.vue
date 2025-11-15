@@ -3,16 +3,16 @@
     <div class="p-6 h-full">
       <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">
-          <span class="text-4xl">🦙</span>
+          <span class="text-4xl">👀</span>
         </div>
         <h1 class="text-3xl font-bold text-gray-900 mb-2 text-center">
-          Welcome to your RAG Playground! 🤖
+          Вітаємо у вашому RAG-помічнику! 🤖
         </h1>
         <p class="text-gray-600 text-center max-w-2xl mb-4">
-          Here you can chat with the pipeline to retrieve information and test your queries.
+          Тут ви можете спілкуватися з системою для пошуку інформації та тестування запитів.
         </p>
         <p class="text-gray-500">
-          Try asking a question to get started!
+          Спробуйте поставити питання, щоб почати! 💬
         </p>
       </div>
 
