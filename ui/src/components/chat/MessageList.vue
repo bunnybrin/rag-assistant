@@ -1,5 +1,5 @@
 <template>
-  <ScrollPanel ref="scrollPanel" class="" style="height: 100%; padding-bottom: 14px;">
+  <ScrollPanel ref="scrollPanel" class="" style="height: 100%;">
     <div class="p-6 h-full">
       <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">
@@ -16,7 +16,7 @@
         </p>
       </div>
 
-      <div v-else>
+      <div v-else class="pb-8">
         <MessageItem
           v-for="message in chatStore.messages"
           :key="message.id"
