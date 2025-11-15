@@ -3,8 +3,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-from src.config import service_factory
-from src.services.indexing_service import IndexingService
+from llama_cloud_services import LlamaCloudIndex
+
+from src.config import app_settings
 from src.services.chat_service import ChatService
 from src.api.dependencies import set_chat_service
 from src.api.routes import chat, system, pipelines
@@ -13,16 +14,12 @@ from src.api.routes import chat, system, pipelines
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 Run RAG Assistant API...")
-
-    if service_factory.vectorstore.index_exists():
-        print("✅ Load existing індексу...")
-        indexing_service = IndexingService()
-        index = indexing_service.load_existing_index()
-    else:
-        print("❌ Index not found. Please run indexing first")
-        raise RuntimeError("Index not found. Please run indexing first.")
-
-    chat_service = ChatService(index)
+    chat_service = ChatService(LlamaCloudIndex(
+        name="appalling-bass-2025-11-11",
+        project_name="Default",
+        organization_id="6a4701a8-5d2f-4a92-a8fa-8f8089062598",
+        api_key=app_settings.llama_cloud_api_key,
+    ))
     set_chat_service(chat_service)
     print("✅ Chat Service initialized")
 

@@ -8,8 +8,6 @@ from src.api.dependencies import get_chat_service
 
 router = APIRouter()
 
-SOURCES_MARKER = "\n\n---SOURCES---\n"
-
 
 class ChatRequest(BaseModel):
     message: str
@@ -20,27 +18,6 @@ class ChatResponse(BaseModel):
     response: str
     sources: List[Dict]
     session_id: str
-
-
-# @router.post("/chat", response_model=ChatResponse)
-# async def chat(request: ChatRequest):
-#     chat_service = get_chat_service()
-#
-#     if not request.session_id:
-#         raise HTTPException(status_code=400, detail="session_id є обов'язковим")
-#
-#     try:
-#         result = await chat_service.chat(
-#             session_id=request.session_id,
-#             message=request.message
-#         )
-#
-#         return ChatResponse(**result)
-#
-#     except ValueError as e:
-#         raise HTTPException(status_code=404, detail=str(e))
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Помилка: {str(e)}")
 
 
 @router.websocket("/ws/chat")
@@ -73,15 +50,8 @@ async def websocket_chat(websocket: WebSocket):
                 })
                 continue
 
-
-            result = await chat_service.chat(session_id, message)
-
-            await websocket.send_json({
-                "type": "end",
-                "content": result["response"],
-                "sources": result["sources"],
-                "session_id": result["session_id"]
-            })
+            async for chunk in chat_service.stream_chat(session_id, message):
+                await websocket.send_json(chunk)
 
     except WebSocketDisconnect:
         print(f"WebSocket відключено для сесії {session_id}")
