@@ -1,3 +1,5 @@
+import {ChatResponseEntity} from "../entities/ChatResponseEntity.js";
+
 export const WebSocketState = {
   CONNECTING: 0,
   OPEN: 1,
@@ -91,18 +93,19 @@ export class WebSocketClient {
         break
 
       case MessageType.TOKEN:
-        this.#emit('token', {
-          content: data.content,
-          sessionId: data.session_id
-        })
+        this.#emit('token',
+          ChatResponseEntity.create({
+            type: 'token',
+            ...data
+          }),
+        )
         break
 
       case MessageType.END:
-        this.#emit('message', {
-          content: data.content,
-          sources: data.sources || [],
-          sessionId: data.session_id
-        })
+        this.#emit('message',  ChatResponseEntity.create({
+            type: 'token',
+            ...data
+          }),)
         break
 
       case MessageType.ERROR:

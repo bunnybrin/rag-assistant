@@ -1,4 +1,4 @@
-class SourceItem {
+export class SourceItem {
   constructor(sourceData, index) {
     const node = sourceData.node || {};
     const metadata = node.metadata || {};

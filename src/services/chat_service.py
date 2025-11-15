@@ -33,6 +33,7 @@ class ChatService:
             yield {
                 'type': 'token',
                 'content': token,
+                'sources': list(map(lambda x: x.model_dump(), streaming_response.source_nodes)),
                 'session_id': session_id
             }
 

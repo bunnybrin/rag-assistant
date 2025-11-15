@@ -1,7 +1,7 @@
 <template>
   <ScrollPanel ref="scrollPanel" class="flex-1 h-full">
     <div class="p-6">
-      <div v-if="messages.length === 0" class="flex flex-col items-center justify-center h-full min-h-[400px]">
+      <div v-if="chatStore.messages.length === 0" class="flex flex-col items-center justify-center h-full min-h-[400px]">
         <div class="w-16 h-16 bg-gray-900 rounded-2xl flex items-center justify-center mb-4">
           <span class="text-4xl">🦙</span>
         </div>
@@ -18,11 +18,12 @@
 
       <div v-else>
         <MessageItem
-          v-for="message in messages"
+          v-for="message in chatStore.messages"
           :key="message.id"
           :message="message"
         />
       </div>
+
     </div>
   </ScrollPanel>
 </template>
@@ -34,7 +35,6 @@ import MessageItem from './MessageItem.vue';
 import { useChatStore } from '../../stores/useChatStore.js';
 
 const chatStore = useChatStore();
-const messages = chatStore.messages;
 
 const scrollPanel = ref(null);
 
@@ -49,7 +49,7 @@ const scrollToBottom = () => {
   });
 };
 
-watch(() => messages.length, () => {
+watch(() => chatStore.messages.length, () => {
   scrollToBottom();
 });
 </script>

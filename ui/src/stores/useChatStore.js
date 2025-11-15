@@ -3,37 +3,53 @@ import {ref, computed} from 'vue'
 import {MessageEntity} from '../entities/MessageEntity'
 import {ChatResponseEntity} from '../entities/ChatResponseEntity'
 import {useWebSocketConnection} from '../composables/useWebSocketConnection'
+import {TaskQueue} from "../utils/TaskQueue.js";
 
 export const useChatStore = defineStore('chat', () => {
+  const q = new TaskQueue(0);
   const sessionId = ref(null)
   const messages = ref([])
-  const currentSources = ref([])
   
   const wsConnection = useWebSocketConnection()
   
   const lastMessage = computed(() => {
     return messages.value[messages.value.length - 1] || null
   })
+  
   const isLoading = computed(() => {
-    const last = lastMessage.value
-    return last && last.isLoading
+    return lastMessage.value && lastMessage.value.isLoading
   })
+  
+  
   const hasMessages = computed(() => messages.value.length > 0)
   
+  const setLastMessage = (message) => {
+    messages.value[messages.value.length - 1] = {...lastMessage.value, ...message}
+  }
   const handleSessionId = (id) => {
     sessionId.value = id
   }
   
+  
+  const handleToken = (data) => {
+    q.push(() => {
+      setLastMessage({
+        isLoading: false,
+        content: lastMessage.value.content += data.content,
+        sources: data.sources,
+      })
+    })
+  }
+  
   const handleMessage = (data) => {
-    const lastMsg = lastMessage.value
-    
-    if (lastMsg?.isLoading) {
+    if (lastMessage.value?.isLoading) {
       const response = ChatResponseEntity.create(data)
       
-      lastMsg.content = response.content
-      lastMsg.sources = response.sources
-      lastMsg.isLoading = false
-      currentSources.value = response.sources
+      setLastMessage({
+        isLoading: false,
+        sources: response.sources,
+      })
+      
       
       if (response.sessionId) {
         sessionId.value = response.sessionId
@@ -42,32 +58,24 @@ export const useChatStore = defineStore('chat', () => {
   }
   
   const handleError = (errorData) => {
-    const lastMsg = lastMessage.value
-    
-    if (lastMsg?.isLoading) {
-      lastMsg.error = errorData.message
-      lastMsg.isLoading = false
+    if (lastMessage.value?.isLoading) {
+      setLastMessage({
+        isLoading: false,
+        error: errorData.message,
+      })
     }
   }
   
   const connect = async () => {
     await wsConnection.connect({
       onSessionId: handleSessionId,
+      onToken: handleToken,
       onMessage: handleMessage,
       onError: handleError,
     })
   }
   
-  //
-  // onMounted(() => {
-  //   handleSessionId('24234')
-  //
-  //   const userMessage = MessageEntity.createUserMessage('Роскажи про перевірку диплома')
-  //   messages.value.push(userMessage)
-  //   const loadingMessage = MessageEntity.createLoadingMessage()
-  //   messages.value.push(loadingMessage)
-  //   handleMessage(mockData)
-  // })
+  
   const sendMessage = (content) => {
     if (!content.trim() || !wsConnection.isConnected.value) return
     
@@ -87,7 +95,6 @@ export const useChatStore = defineStore('chat', () => {
   
   const reset = () => {
     messages.value = []
-    currentSources.value = []
     wsConnection.error.value = null
     
     if (wsConnection.isConnected.value) {
@@ -106,7 +113,6 @@ export const useChatStore = defineStore('chat', () => {
     isConnecting: wsConnection.isConnecting,
     isConnected: wsConnection.isConnected,
     error: wsConnection.error,
-    currentSources,
     lastMessage,
     isLoading,
     hasMessages,
