@@ -533,10 +533,14 @@ layout: default
 layout: default
 ---
 
-# Retrieval Optimization - Пошук
+# 2️⃣ Retrieval Optimization - Пошук
+
+
+<div class="mt-4 text-center text-sm opacity-80">
+Максимізація релевантності результатів пошуку
+</div>
 
 <div class="grid grid-cols-2 gap-6 mt-4">
-
 <div>
 
 ### 🏷️ Metadata Filtering
