@@ -39,43 +39,117 @@ backgroundSize: cover
 layout: default
 ---
 
-# Актуальність теми
+# Чому базових LLM недостатньо?
 
-<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="mt-6">
 
-<div>
+## 📋 Типові сценарії невдач
 
-## 🎯 Проблема
+<div class="grid grid-cols-3 gap-4 mt-4">
 
-<v-clicks>
+<v-click>
+<div class="bg-red-50 p-4 rounded-lg border-2 border-red-200">
+<div class="text-sm font-bold text-red-700">❌ Запит:</div>
+<div class="text-xs italic">"Які останні новини про компанію X?"</div>
+<div class="text-xs mt-2 text-red-600">→ LLM не знає актуальних подій</div>
+<div class="text-xs font-bold mt-2">🔴 Knowledge Cutoff</div>
+</div>
+</v-click>
 
-- 🤖 **Великі мовні моделі (LLM)** - потужний інструмент
-- ⚠️ **Галюцинації** - генерація недостовірної інформації
-- 📅 **Knowledge Cutoff** - застарілість знань
-- 🏢 **Відсутність доступу** до приватних даних
-- ❓ **Неможливість верифікації** джерел
+<v-click>
+<div class="bg-orange-50 p-4 rounded-lg border-2 border-orange-200">
+<div class="text-sm font-bold text-orange-700">❌ Запит:</div>
+<div class="text-xs italic">"Знайди в інструкції термін гарантії"</div>
+<div class="text-xs mt-2 text-orange-600">→ LLM не має доступу до документів</div>
+<div class="text-xs font-bold mt-2">🟡 Приватні дані</div>
+</div>
+</v-click>
 
-</v-clicks>
+<v-click>
+<div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-200">
+<div class="text-sm font-bold text-yellow-700">❌ Запит:</div>
+<div class="text-xs italic">"Яка статистика продажів за Q3 2024?"</div>
+<div class="text-xs mt-2 text-yellow-600">→ LLM може вигадати дані</div>
+<div class="text-xs font-bold mt-2">🟠 Галюцинації</div>
+</div>
+</v-click>
 
 </div>
 
-<div>
+</div>
 
-## ✨ Рішення
+<v-click>
 
-<v-clicks>
+<div class="mt-8 bg-gray-100 p-4 rounded-lg text-center">
 
-- 📚 **RAG** - Retrieval-Augmented Generation
-- 🔍 Поєднання LLM з **зовнішніми джерелами знань**
-- ✅ Підвищення **точності відповідей**
-- 📖 **Прозоре цитування** джерел
-- 🎓 Створення **галузевих помічників**
-
-</v-clicks>
+### 💡 Висновок: потрібен механізм доступу до актуальних та достовірних джерел
 
 </div>
 
+</v-click>
+
+---
+layout: default
+---
+
+# RAG вирішує ці проблеми
+
+<div class="grid grid-cols-3 gap-6 mt-8">
+
+<v-click>
+<div class="text-center">
+<div class="bg-red-100 p-3 rounded-t-lg border-2 border-red-300">
+<div class="text-sm">🔴 Knowledge Cutoff</div>
+<div class="text-xs text-red-600">Застарілі знання</div>
 </div>
+<div class="text-2xl py-2">⬇️</div>
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="text-sm">📚 Актуальна база знань</div>
+<div class="text-xs text-green-600">Оновлення в реальному часі</div>
+</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-center">
+<div class="bg-orange-100 p-3 rounded-t-lg border-2 border-orange-300">
+<div class="text-sm">🟠 Галюцинації</div>
+<div class="text-xs text-orange-600">Вигадані факти</div>
+</div>
+<div class="text-2xl py-2">⬇️</div>
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="text-sm">📖 Цитування джерел</div>
+<div class="text-xs text-green-600">Верифіковані відповіді</div>
+</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-center">
+<div class="bg-yellow-100 p-3 rounded-t-lg border-2 border-yellow-300">
+<div class="text-sm">🟡 Приватні дані</div>
+<div class="text-xs text-yellow-600">Немає доступу</div>
+</div>
+<div class="text-2xl py-2">⬇️</div>
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="text-sm">🏢 Корпоративні документи</div>
+<div class="text-xs text-green-600">Повна інтеграція</div>
+</div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+
+<div class="mt-8 bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200">
+
+### 🎯 RAG = Retrieval-Augmented Generation
+**Поєднання потужності LLM з достовірними джерелами знань**
+
+</div>
+
+</v-click>
 
 ---
 layout: default
@@ -170,69 +244,6 @@ graph TB
 <div class="text-xs mt-4 text-center opacity-75">
 <v-click>
 Слова з близьким значенням мають схожі вектори
-</v-click>
-</div>
-
----
-layout: default
----
-
-# Обмеження базових LLM
-
-<div class="grid grid-cols-3 gap-4 mt-8">
-
-<div class="border-2 border-red-400 rounded-lg p-4">
-
-### 🔴 Knowledge Cutoff
-
-<v-clicks>
-
-- Знання обмежені датою тренування
-- Немає інформації про нові події
-- Застаріла статистика
-- Старі версії технологій
-
-</v-clicks>
-
-</div>
-
-<div class="border-2 border-orange-400 rounded-lg p-4">
-
-### 🟠 Галюцинації
-
-<v-clicks>
-
-- Генерація вигаданих фактів
-- Правдоподібні, але хибні твердження
-- Немає механізму верифікації
-- Ризик для критичних систем
-
-</v-clicks>
-
-</div>
-
-<div class="border-2 border-yellow-400 rounded-lg p-4">
-
-### 🟡 Приватні дані
-
-<v-clicks>
-
-- Тренування на публічних даних
-- Відсутність корпоративних знань
-- Незнання галузевої термінології
-- Обмеження контекстного вікна
-
-</v-clicks>
-
-</div>
-
-</div>
-
-<div class="mt-8 text-center">
-<v-click>
-
-## ✅ RAG вирішує всі ці проблеми
-
 </v-click>
 </div>
 
