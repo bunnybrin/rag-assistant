@@ -364,49 +364,25 @@ layout: default
 
 # Конвеєр RAG
 
-<div class="text-center mt-4">
+<div class="flex justify-center items-center h-80">
 
-```mermaid {scale: 0.9}
+```mermaid {scale: 0.7}
 graph LR
-    A["❓ Запит користувача"] --> B["🔍 Пошуковий агент<br/>(Retriever)"]
-    B --> C["🤖 Велика мовна модель<br/>(LLM)"]
-    C --> D["✅ Відповідь з цитуванням"]
-    B <--> E["📚 База знань<br/>(Контекст)"]
+    A["❓ Запит користувача"] --> B["🔢 Embedding"]
+    B --> C["🔍 Пошуковий агент<br/>(Retriever)"]
+    C <--> D["📚 База знань<br/>(Контекст)"]
+    C --> E["📝 Системний промпт"]
+    E --> F["🤖 LLM"]
+    F --> G["✅ Відповідь"]
 
-    style A fill:#c8e6c9,stroke:#388e3c,stroke-width:3px,color:#1f2937
-    style B fill:#ffccbc,stroke:#d84315,stroke-width:3px,color:#1f2937
-    style C fill:#b3e5fc,stroke:#0277bd,stroke-width:3px,color:#1f2937
-    style D fill:#b2dfdb,stroke:#00695c,stroke-width:3px,color:#1f2937
-    style E fill:#fff9c4,stroke:#f57f17,stroke-width:3px,color:#1f2937
+    style A fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#1f2937
+    style B fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#1f2937
+    style C fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#1f2937
+    style D fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#1f2937
+    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#1f2937
+    style F fill:#b3e5fc,stroke:#0277bd,stroke-width:2px,color:#1f2937
+    style G fill:#b2dfdb,stroke:#00695c,stroke-width:2px,color:#1f2937
 ```
-
-</div>
-
-<div class="mt-8 grid grid-cols-3 gap-4">
-
-<v-click>
-
-### 🎯 Основна ідея
-Перед генерацією відповіді LLM **отримує релевантну інформацію** з бази знань
-
-</v-click>
-
-<v-click>
-
-### ✨ Переваги
-- Актуальність даних
-- Фактична точність
-- Прозорість джерел
-- Контроль контексту
-
-</v-click>
-
-<v-click>
-
-### 🚀 Результат
-**Достовірні відповіді** з посиланнями на першоджерела
-
-</v-click>
 
 </div>
 
