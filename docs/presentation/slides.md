@@ -52,7 +52,7 @@ layout: default
 <v-click>
 
 
-> **🚀Ключовий аспект:** Актуальність полягає у створенні моста між потужністю великих мовних моделей та специфічними, закритими даними підприємства.
+> **🚀Актуальність полягає:** у створенні моста між потужністю великих мовних моделей та специфічними, закритими даними підприємства.
 
 </v-click>
 
@@ -342,58 +342,19 @@ layout: default
 
 # Етап індексації RAG
 
-<div class="flex justify-center mt-4">
+<div class="flex justify-center items-center h-80">
 
-```mermaid {scale: 0.85}
-graph TB
-    A["📚 Галузеві документи<br/>(PDF, DOCX, TXT)"] --> B["✂️ Розбиття на фрагменти<br/>(Chunking)"]
-    B --> C1["📄 Chunk 1"]
-    B --> C2["📄 Chunk 2"]
-    B --> C3["📄 Chunk 3"]
-    C1 --> D["🔢 Векторізація<br/>(Embedding Model)"]
-    C2 --> D
-    C3 --> D
-    D --> F["🗄️ Векторна База Даних<br/>(Pinecone, Chroma, Milvus)"]
-    F --> G["📊 Векторний Індекс<br/>(HNSW/IVF)"]
+```mermaid {scale: 0.8}
+graph LR
+    A["📚 Documents<br/>(Підготовка документів)"] --> B["✂️ Chunking<br/>(Нарізання на фрагменти)"]
+    B --> D["🔢 Embedding<br/>(Векторизація тексту)"]
+    D --> E["🗄️ Vector DB<br/>(Збереження)"]
 
-    style A fill:#fff9c4,stroke:#f57f17,stroke-width:3px
-    style B fill:#ffccbc,stroke:#d84315,stroke-width:3px
-    style D fill:#b3e5fc,stroke:#0277bd,stroke-width:3px
-    style F fill:#c8e6c9,stroke:#388e3c,stroke-width:3px
-    style G fill:#b2dfdb,stroke:#00695c,stroke-width:3px
+    style A fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#1f2937
+    style B fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#1f2937
+    style D fill:#b3e5fc,stroke:#0277bd,stroke-width:2px,color:#1f2937
+    style E fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#1f2937
 ```
-
-</div>
-
-<div class="mt-6 grid grid-cols-4 gap-3 text-sm">
-
-<v-click>
-<div class="bg-amber-100 p-3 rounded">
-<b>1️⃣ Джерела</b><br/>
-Збір документів
-</div>
-</v-click>
-
-<v-click>
-<div class="bg-orange-100 p-3 rounded">
-<b>2️⃣ Chunking</b><br/>
-Розбиття на фрагменти
-</div>
-</v-click>
-
-<v-click>
-<div class="bg-blue-100 p-3 rounded">
-<b>3️⃣ Embedding</b><br/>
-Векторизація тексту
-</div>
-</v-click>
-
-<v-click>
-<div class="bg-green-100 p-3 rounded">
-<b>4️⃣ Індекс</b><br/>
-Швидкий пошук
-</div>
-</v-click>
 
 </div>
 
@@ -401,7 +362,7 @@ graph TB
 layout: default
 ---
 
-# Концепція RAG
+# Конвеєр RAG
 
 <div class="text-center mt-4">
 
@@ -412,11 +373,11 @@ graph LR
     C --> D["✅ Відповідь з цитуванням"]
     B <--> E["📚 База знань<br/>(Контекст)"]
 
-    style A fill:#c8e6c9,stroke:#388e3c,stroke-width:3px
-    style B fill:#ffccbc,stroke:#d84315,stroke-width:3px
-    style C fill:#b3e5fc,stroke:#0277bd,stroke-width:3px
-    style D fill:#b2dfdb,stroke:#00695c,stroke-width:3px
-    style E fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style A fill:#c8e6c9,stroke:#388e3c,stroke-width:3px,color:#1f2937
+    style B fill:#ffccbc,stroke:#d84315,stroke-width:3px,color:#1f2937
+    style C fill:#b3e5fc,stroke:#0277bd,stroke-width:3px,color:#1f2937
+    style D fill:#b2dfdb,stroke:#00695c,stroke-width:3px,color:#1f2937
+    style E fill:#fff9c4,stroke:#f57f17,stroke-width:3px,color:#1f2937
 ```
 
 </div>
