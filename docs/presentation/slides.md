@@ -19,9 +19,7 @@ background: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920
 backgroundSize: cover
 ---
 
-# Дослідження та розробка системи на основі RAG
-
-## Retrieval-Augmented Generation для створення галузевого помічника
+## Дослідження та розробка системи на основі RAG для створення галузевого помічника на базі великої мовної моделі.
 
 <div class="pt-12">
   <span class="text-sm opacity-75">
@@ -41,6 +39,29 @@ layout: default
 
 # Актуальність теми
 
+Інтеграція AI у реальні бізнес-процеси — головний виклик сучасного IT.
+
+<v-clicks>
+
+*  Світ відходить від "загальних чат-ботів" до вузькопрофільних асистентів, які розуміють специфіку конкретної галузі.
+*  Близько **80%** галузевиз знань зберігаються в неструктурованому виді, які складно використовувати для швидкого пошуку.
+*  Зростає потреба в системах, які можуть автоматично обробляти складні запити клієнтів без залучення людини-оператора.
+
+</v-clicks>
+
+<v-click>
+
+
+> **🚀Ключовий аспект:** Актуальність полягає у створенні моста між потужністю великих мовних моделей та специфічними, закритими даними підприємства.
+
+</v-click>
+
+---
+layout: default
+---
+
+# Переваги LLM
+
 <div class="grid grid-cols-2 gap-6 mt-4">
 
 <div>
@@ -50,7 +71,7 @@ layout: default
 <v-clicks>
 
 - 🎯 **Універсальність** - один інструмент для багатьох задач
-- 🧠 **Контекстне розуміння** - аналіз нюансів мови та тональності
+- 🧠 **Контекстне розуміння** - аналіз нюансів мови
 - 💬 **Легкість використання** - взаємодія природною мовою
 - 🚀 **Zero/Few-shot** - виконання нових задач без перенавчання
 - 🌍 **Багатомовність** - підтримка десятків мов
@@ -66,10 +87,10 @@ layout: default
 <v-clicks>
 
 - 📝 **Генерація контенту** - тексти, маркетинг, звіти
-- 🤖 **Інтелектуальні чат-боти** - Customer Support
-- 📋 **Узагальнення** - резюме документів (Summarization)
-- 🌐 **Машинний переклад** - десятки мов з контекстом
-- 💻 **Написання коду** - генерація та аналіз (Python, SQL)
+- 🤖 **Інтелектуальні чат-боти**
+- 📋 **Узагальнення** - резюме документів
+- 🌐 **Машинний переклад** 
+- 💻 **Написання коду** 
 
 </v-clicks>
 
@@ -91,36 +112,82 @@ layout: default
 layout: default
 ---
 
-# Чому базових LLM недостатньо?
+# Обмеження базових LLM
 
-<div class="mt-6">
+<div class="grid grid-cols-2 gap-6 mt-4">
 
-## 📋 Типові сценарії невдач
+<div>
 
-<div class="grid grid-cols-3 gap-4 mt-4">
+## ⚙️ Технічні обмеження
+
+<v-clicks>
+
+- 📅 **Knowledge Cutoff** - знання обмежені датою тренування
+- 🔒 **Приватні дані** - немає доступу до корпоративних документів
+- 📏 **Контекстне вікно** - обмежений обсяг вхідних даних
+- 🎓 **Галузева специфіка** - незнання вузької термінології
+
+</v-clicks>
+
+</div>
+
+<div>
+
+## ⚠️ Проблеми достовірності
+
+<v-clicks>
+
+- 🟠 **Галюцинації** - генерація вигаданих фактів
+- ❓ **Неможливість верифікації** - немає посилань на джерела
+- 📊 **Застаріла статистика** - неактуальні числові дані
+- 🚨 **Правдоподібні, але хибні твердження** 
+
+</v-clicks>
+
+</div>
+
+</div>
 
 <v-click>
-<div class="bg-red-50 p-4 rounded-lg border-2 border-red-200">
+
+<div class="mt-6 bg-amber-50 p-4 rounded-lg border-2 border-amber-300 text-gray-800 text-center">
+
+### 📋 Подивимось на конкретні приклади
+
+</div>
+
+</v-click>
+
+---
+layout: default
+---
+
+# Типові сценарії невдач
+
+<div class="grid grid-cols-3 gap-3 mt-4">
+
+<v-click>
+<div class="bg-red-50 p-3 rounded-lg border-2 border-red-200 text-gray-800">
 <div class="text-sm font-bold text-red-700">❌ Запит:</div>
-<div class="text-xs italic">"Які останні новини про компанію X?"</div>
+<div class="text-xs italic text-gray-700">"Які останні новини про компанію X?"</div>
 <div class="text-xs mt-2 text-red-600">→ LLM не знає актуальних подій</div>
 <div class="text-xs font-bold mt-2">🔴 Knowledge Cutoff</div>
 </div>
 </v-click>
 
 <v-click>
-<div class="bg-orange-50 p-4 rounded-lg border-2 border-orange-200">
+<div class="bg-orange-50 p-3 rounded-lg border-2 border-orange-200 text-gray-800">
 <div class="text-sm font-bold text-orange-700">❌ Запит:</div>
-<div class="text-xs italic">"Знайди в інструкції термін гарантії"</div>
+<div class="text-xs italic text-gray-700">"Знайди в інструкції термін гарантії"</div>
 <div class="text-xs mt-2 text-orange-600">→ LLM не має доступу до документів</div>
 <div class="text-xs font-bold mt-2">🟡 Приватні дані</div>
 </div>
 </v-click>
 
 <v-click>
-<div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-200">
+<div class="bg-yellow-50 p-3 rounded-lg border-2 border-yellow-200 text-gray-800">
 <div class="text-sm font-bold text-yellow-700">❌ Запит:</div>
-<div class="text-xs italic">"Яка статистика продажів за Q3 2024?"</div>
+<div class="text-xs italic text-gray-700">"Яка статистика продажів за Q3 2024?"</div>
 <div class="text-xs mt-2 text-yellow-600">→ LLM може вигадати дані</div>
 <div class="text-xs font-bold mt-2">🟠 Галюцинації</div>
 </div>
@@ -128,13 +195,33 @@ layout: default
 
 </div>
 
+<div class="grid grid-cols-2 gap-3 mt-3 mx-auto max-w-2xl">
+
+<v-click>
+<div class="bg-blue-50 p-3 rounded-lg border-2 border-blue-200 text-gray-800">
+<div class="text-sm font-bold text-blue-700">❌ Запит:</div>
+<div class="text-xs italic text-gray-700">"Що таке КЗ-5 у нашому регламенті?"</div>
+<div class="text-xs mt-2 text-blue-600">→ LLM не знає внутрішніх скорочень</div>
+<div class="text-xs font-bold mt-2">🔵 Галузева термінологія</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="bg-purple-50 p-3 rounded-lg border-2 border-purple-200 text-gray-800">
+<div class="text-sm font-bold text-purple-700">❌ Запит:</div>
+<div class="text-xs italic text-gray-700">"Дай посилання на джерело цієї інформації"</div>
+<div class="text-xs mt-2 text-purple-600">→ LLM не може підтвердити інформацію</div>
+<div class="text-xs font-bold mt-2">❓ Неможливість верифікації</div>
+</div>
+</v-click>
+
 </div>
 
 <v-click>
 
-<div class="mt-8 bg-gray-100 p-4 rounded-lg text-center text-gray-800">
+<div class="mt-4 bg-amber-50 p-3 rounded-lg text-center border-2 border-amber-300 text-gray-800">
 
-### 💡 Висновок: потрібен механізм доступу до актуальних та достовірних джерел
+### 💡 Як RAG вирішує ці проблеми?
 
 </div>
 
@@ -146,16 +233,16 @@ layout: default
 
 # RAG вирішує ці проблеми
 
-<div class="grid grid-cols-3 gap-6 mt-8">
+<div class="grid grid-cols-3 gap-6 mt-6">
 
 <v-click>
 <div class="text-center">
-<div class="bg-red-100 p-3 rounded-t-lg border-2 border-red-300">
+<div class="bg-red-100 p-3 rounded-t-lg border-2 border-red-300 text-gray-800">
 <div class="text-sm">🔴 Knowledge Cutoff</div>
 <div class="text-xs text-red-600">Застарілі знання</div>
 </div>
 <div class="text-2xl py-2">⬇️</div>
-<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300 text-gray-800">
 <div class="text-sm">📚 Актуальна база знань</div>
 <div class="text-xs text-green-600">Оновлення в реальному часі</div>
 </div>
@@ -164,12 +251,12 @@ layout: default
 
 <v-click>
 <div class="text-center">
-<div class="bg-orange-100 p-3 rounded-t-lg border-2 border-orange-300">
+<div class="bg-orange-100 p-3 rounded-t-lg border-2 border-orange-300 text-gray-800">
 <div class="text-sm">🟠 Галюцинації</div>
 <div class="text-xs text-orange-600">Вигадані факти</div>
 </div>
 <div class="text-2xl py-2">⬇️</div>
-<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300 text-gray-800">
 <div class="text-sm">📖 Цитування джерел</div>
 <div class="text-xs text-green-600">Верифіковані відповіді</div>
 </div>
@@ -178,12 +265,12 @@ layout: default
 
 <v-click>
 <div class="text-center">
-<div class="bg-yellow-100 p-3 rounded-t-lg border-2 border-yellow-300">
+<div class="bg-yellow-100 p-3 rounded-t-lg border-2 border-yellow-300 text-gray-800">
 <div class="text-sm">🟡 Приватні дані</div>
 <div class="text-xs text-yellow-600">Немає доступу</div>
 </div>
 <div class="text-2xl py-2">⬇️</div>
-<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300">
+<div class="bg-green-100 p-3 rounded-b-lg border-2 border-green-300 text-gray-800">
 <div class="text-sm">🏢 Корпоративні документи</div>
 <div class="text-xs text-green-600">Повна інтеграція</div>
 </div>
@@ -194,7 +281,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200 text-gray-800">
+<div class="mt-6 bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200 text-gray-800">
 
 ### 🎯 RAG = Retrieval-Augmented Generation
 **Поєднання потужності LLM з достовірними джерелами знань**
