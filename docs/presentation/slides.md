@@ -39,6 +39,58 @@ backgroundSize: cover
 layout: default
 ---
 
+# Актуальність теми
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div>
+
+## 🚀 Переваги LLM
+
+<v-clicks>
+
+- 🎯 **Універсальність** - один інструмент для багатьох задач
+- 🧠 **Контекстне розуміння** - аналіз нюансів мови та тональності
+- 💬 **Легкість використання** - взаємодія природною мовою
+- 🚀 **Zero/Few-shot** - виконання нових задач без перенавчання
+- 🌍 **Багатомовність** - підтримка десятків мов
+
+</v-clicks>
+
+</div>
+
+<div>
+
+## 📋 Сфери застосування
+
+<v-clicks>
+
+- 📝 **Генерація контенту** - тексти, маркетинг, звіти
+- 🤖 **Інтелектуальні чат-боти** - Customer Support
+- 📋 **Узагальнення** - резюме документів (Summarization)
+- 🌐 **Машинний переклад** - десятки мов з контекстом
+- 💻 **Написання коду** - генерація та аналіз (Python, SQL)
+
+</v-clicks>
+
+</div>
+
+</div>
+
+<v-click>
+
+<div class="mt-6 bg-amber-50 p-4 rounded-lg border-2 border-amber-300 text-gray-800 text-center">
+
+### 🤔 Але чи можуть LLM замінити експертів у спеціалізованих галузях?
+
+</div>
+
+</v-click>
+
+---
+layout: default
+---
+
 # Чому базових LLM недостатньо?
 
 <div class="mt-6">
@@ -80,7 +132,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 bg-gray-100 p-4 rounded-lg text-center">
+<div class="mt-8 bg-gray-100 p-4 rounded-lg text-center text-gray-800">
 
 ### 💡 Висновок: потрібен механізм доступу до актуальних та достовірних джерел
 
@@ -142,7 +194,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200">
+<div class="mt-8 bg-blue-50 p-4 rounded-lg text-center border-2 border-blue-200 text-gray-800">
 
 ### 🎯 RAG = Retrieval-Augmented Generation
 **Поєднання потужності LLM з достовірними джерелами знань**
@@ -465,7 +517,7 @@ layout: default
 
 <v-click>
 
-<div class="bg-blue-50 p-3 rounded mt-3 text-sm">
+<div class="bg-blue-50 p-3 rounded mt-3 text-sm text-gray-800">
 <b>Приклад:</b> "Накази по відпустках за 2024"<br/>
 ✅ Фільтр: <code>year: 2024, type: "наказ"</code>
 </div>
@@ -498,7 +550,7 @@ layout: default
 
 <v-click>
 
-<div class="bg-green-50 p-3 rounded mt-3 text-sm">
+<div class="bg-green-50 p-3 rounded mt-3 text-sm text-gray-800">
 <b>Результат:</b> Знаходить документи які:<br/>
 ✅ Концептуально відповідають<br/>
 ✅ Містять точні терміни
@@ -539,7 +591,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg">
+<div class="mt-8 bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg text-gray-800">
 
 ### 📊 Приклад: "Які штрафи за порушення термінів подачі звіту?"
 
@@ -620,7 +672,7 @@ flowchart TB
 
 **Додавання посилань на джерела**
 
-<div class="bg-blue-50 p-4 rounded mt-4 text-sm">
+<div class="bg-blue-50 p-4 rounded mt-4 text-sm text-gray-800">
 
 <b>Запит:</b> "Термін гарантії на компресор?"
 
@@ -636,7 +688,7 @@ flowchart TB
 
 <v-click>
 
-<div class="mt-4 bg-green-50 p-3 rounded text-sm">
+<div class="mt-4 bg-green-50 p-3 rounded text-sm text-gray-800">
 <b>✨ Переваги:</b><br/>
 ✅ Прозорість<br/>
 ✅ Можливість верифікації<br/>
@@ -701,7 +753,7 @@ graph TB
 <div class="grid grid-cols-3 gap-4 mt-6 text-sm">
 
 <v-click>
-<div class="bg-blue-50 p-3 rounded">
+<div class="bg-blue-50 p-3 rounded text-gray-800">
 <b>Frontend</b><br/>
 Vue.js, TypeScript<br/>
 Інтерактивний UI
@@ -709,7 +761,7 @@ Vue.js, TypeScript<br/>
 </v-click>
 
 <v-click>
-<div class="bg-purple-50 p-3 rounded">
+<div class="bg-purple-50 p-3 rounded text-gray-800">
 <b>Backend</b><br/>
 FastAPI, Python<br/>
 RAG Pipeline
@@ -717,7 +769,7 @@ RAG Pipeline
 </v-click>
 
 <v-click>
-<div class="bg-green-50 p-3 rounded">
+<div class="bg-green-50 p-3 rounded text-gray-800">
 <b>Дані</b><br/>
 ChromaDB<br/>
 OpenAI Embeddings
@@ -782,7 +834,7 @@ layout: default
 
 <v-click>
 
-<div class="mt-8 bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg">
+<div class="mt-8 bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg text-gray-800">
 
 ## 🎯 Результат реалізації
 
