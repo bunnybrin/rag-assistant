@@ -1,0 +1,16 @@
+---
+config:
+  theme: 'neutral'
+---
+
+graph TB
+H["💬 Запит<br/>Користувача"] --> I["🔍 1. Отримання<br/>Retrieval"]
+I --> J["🗄️ Векторна<br/>База"]
+J --> K["🎯 2. Збагачення та<br/>Формування Промпта"]
+K --> M{"🧠 3. Генерація<br/>Великої Мовної Моделі<br/>GPT-4/Claude/Llama"}
+M --> N["✅ Відповідь<br/>Користувачу"]
+
+
+style J fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+style M fill:#ffccbc,stroke:#d84315,stroke-width:2px
+style N fill:#b2dfdb,stroke:#00695c,stroke-width:2px

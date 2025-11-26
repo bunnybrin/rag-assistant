@@ -1,0 +1,17 @@
+---
+config:
+  theme: 'neutral'
+---
+
+graph LR
+    subgraph Схема роботи LLM+RAG
+        A["Запит"] --> B("Пошуковий агент<br/> Retriever")
+        B --> C("Велика мовна модель<br/> LLM")
+        C --> D["Відповідь"]
+        B <--> E("Контекст")
+    end
+
+
+style A fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+style B fill:#ffccbc,stroke:#d84315,stroke-width:2px
+style D fill:#b2dfdb,stroke:#00695c,stroke-width:2px
