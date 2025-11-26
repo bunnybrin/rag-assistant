@@ -548,18 +548,37 @@ layout: default
 <v-clicks>
 
 **Фільтрація за атрибутами**
-- Дата створення
-- Тип документа
-- Рівень доступу
-- Відділ/автор
 
 </v-clicks>
 
 <v-click>
 
-<div class="bg-blue-50 p-3 rounded mt-3 text-sm text-gray-800">
-<b>Приклад:</b> "Накази по відпустках за 2024"<br/>
-✅ Фільтр: <code>year: 2024, type: "наказ"</code>
+<div class="bg-blue-50 p-2 rounded mt-2 text-xs text-gray-800">
+<b>📅 За датою:</b> "Накази за 2024" → <code class="text-gray-200">year: 2024</code>
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="bg-purple-50 p-2 rounded mt-1 text-xs text-gray-800">
+<b>👤 За роллю:</b> "Інструкція для менеджерів" → <code class="text-gray-200">role: manager</code>
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="bg-green-50 p-2 rounded mt-1 text-xs text-gray-800">
+<b>🔢 За версією:</b> "Документація v2.5" → <code class="text-gray-200">version: 2.5</code>
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="bg-orange-50 p-2 rounded mt-1 text-xs text-gray-800">
+<b>🔒 За доступом:</b> "Конфіденційні звіти" → <code class="text-gray-200">access: confidential</code>
 </div>
 
 </v-click>
@@ -592,7 +611,7 @@ layout: default
 
 <div class="bg-green-50 p-3 rounded mt-3 text-sm text-gray-800">
 <b>Результат:</b> Знаходить документи які:<br/>
-✅ Концептуально відповідають<br/>
+✅ Концептуально відповідають запиту<br/>
 ✅ Містять точні терміни
 </div>
 
