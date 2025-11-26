@@ -738,9 +738,9 @@ layout: default
 <div class="mt-4 bg-gray-900 p-3 rounded-lg text-xs font-mono">
 <span class="text-purple-400">Роль:</span> <span class="text-gray-300">Ти — експерт технічної підтримки. Твоя задача допомагати користувачам з їх питаннями</span><br/>
 <span class="text-yellow-400">Інструкції:</span> <span class="text-gray-300">Відповідай лаконічно. Обовязково цитуй джерела.</span><br/>
-<span class="text-green-400">Контекст:</span> <span class="text-gray-500">[Знайдені документи]</span><br/>
+<span class="text-green-400">Контекст:</span> <span class="text-gray-300">Контекст: <span class="text-gray-500">[Знайдені документи]</span></span><br/>
 <span class="text-red-400">Обмеження:</span> <span class="text-gray-300">Відповідай тільки з контексту! Якщо джерел не знайдено, то так і скажи</span><br/>
-<span class="text-blue-400">Запит:</span> <span class="text-gray-500">[Запит користувача]</span>
+<span class="text-blue-400">Запит:</span> <span class="text-gray-300">Питання користувача: <span class="text-gray-500">[Запит користувача]</span></span>
 </div>
 
 </v-click>
