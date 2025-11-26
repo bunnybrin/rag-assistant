@@ -683,81 +683,114 @@ layout: default
 layout: default
 ---
 
-# Generation Optimization - Генерація
+# 3️⃣ Generation - Prompt Engineering
 
-<div class="grid grid-cols-2 gap-6 mt-4">
+<div class="mt-2 text-center text-sm opacity-80">
+Як змусити LLM правильно інтерпретувати знайдену інформацію
+</div>
 
-<div>
+<div class="grid grid-cols-5 gap-3 mt-6">
 
-### 📝 System Prompt Engineering
+<v-click>
+<div class="bg-purple-50 p-3 rounded-lg text-center text-gray-800 border-2 border-purple-200">
+<div class="text-2xl">🎭</div>
+<div class="font-bold text-sm mt-1">Роль</div>
+<div class="text-xs mt-2 opacity-80">"Ти — галузевий експерт з технічної підтримки"</div>
+</div>
+</v-click>
 
-```mermaid {scale: 0.7}
-flowchart TB
-    A["🎭 Роль"] --> P[Промпт]
-    B["📋 Інструкції"] --> P
-    C["📚 Контекст"] --> P
-    D["⛔ Обмеження"] --> P
-    E["❓ Запитання"] --> P
-    P --> F["🤖 LLM"]
-    F --> G["✅ Відповідь"]
+<v-click>
+<div class="bg-yellow-50 p-3 rounded-lg text-center text-gray-800 border-2 border-yellow-200">
+<div class="text-2xl">📋</div>
+<div class="font-bold text-sm mt-1">Інструкції</div>
+<div class="text-xs mt-2 opacity-80">Формат відповіді, стиль, мова</div>
+</div>
+</v-click>
 
-    style A fill:#e1bee7
-    style C fill:#c8e6c9
-    style D fill:#ffccbc
-    style E fill:#b3e5fc
-    style G fill:#fff9c4
-```
+<v-click>
+<div class="bg-green-50 p-3 rounded-lg text-center text-gray-800 border-2 border-green-200">
+<div class="text-2xl">📚</div>
+<div class="font-bold text-sm mt-1">Контекст</div>
+<div class="text-xs mt-2 opacity-80">Знайдені фрагменти документів</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="bg-red-50 p-3 rounded-lg text-center text-gray-800 border-2 border-red-200">
+<div class="text-2xl">⛔</div>
+<div class="font-bold text-sm mt-1">Заборони</div>
+<div class="text-xs mt-2 opacity-80">"Не вигадуй! Тільки з контексту!"</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="bg-blue-50 p-3 rounded-lg text-center text-gray-800 border-2 border-blue-200">
+<div class="text-2xl">📖</div>
+<div class="font-bold text-sm mt-1">Цитування</div>
+<div class="text-xs mt-2 opacity-80">"Вказуй джерело кожного факту"</div>
+</div>
+</v-click>
+
+</div>
 
 <v-click>
 
-<div class="text-xs mt-3">
+<div class="mt-4 bg-gray-900 p-3 rounded-lg text-xs font-mono">
+<span class="text-purple-400">Роль:</span> <span class="text-gray-300">Ти — експерт технічної підтримки. Твоя задача допомагати користувачам з їх питаннями</span><br/>
+<span class="text-yellow-400">Інструкції:</span> <span class="text-gray-300">Відповідай лаконічно. Обовязково цитуй джерела.</span><br/>
+<span class="text-green-400">Контекст:</span> <span class="text-gray-500">[Знайдені документи]</span><br/>
+<span class="text-red-400">Обмеження:</span> <span class="text-gray-300">Відповідай тільки з контексту! Якщо джерел не знайдено, то так і скажи</span><br/>
+<span class="text-blue-400">Запит:</span> <span class="text-gray-500">[Запит користувача]</span>
+</div>
 
-**Критичні обмеження:**
-- ❌ Не галюцинувати
-- ✅ Тільки наданий контекст
-- 📖 Якщо немає відповіді - повідомити
+</v-click>
+
+---
+layout: default
+---
+
+# 3️⃣ Generation - Приклад відповіді
+
+<div class="flex justify-center mt-8">
+<div class="max-w-2xl w-full">
+
+<div class="bg-gray-100 p-4 rounded-lg text-gray-800">
+<b>❓ Запит:</b> "Який термін гарантії на компресор і що її анулює?"
+</div>
+
+<v-click>
+
+<div class="mt-4 bg-blue-50 p-6 rounded-lg text-gray-800 border-l-4 border-blue-500">
+
+<div class="font-medium">✅ Відповідь системи:</div>
+
+<div class="mt-3">
+Гарантійний термін на компресор становить **24 місяці** з дати придбання.
+</div>
+<div class="text-xs text-blue-600 mt-1">📎 [Гарантійний_талон.pdf, стор. 2]</div>
+
+<div class="mt-3">
+Гарантія **анулюється** при:
+- використанні неоригінального мастила
+- порушенні умов експлуатації
+</div>
+<div class="text-xs text-blue-600 mt-1">📎 [Інструкція_експлуатації.docx, розділ 4.1]</div>
 
 </div>
 
 </v-click>
 
-</div>
-
-<div>
-
 <v-click>
 
-### 📖 Citation Addition
-
-**Додавання посилань на джерела**
-
-<div class="bg-blue-50 p-4 rounded mt-4 text-sm text-gray-800">
-
-<b>Запит:</b> "Термін гарантії на компресор?"
-
-<b>Відповідь з атрибуцією:</b>
-
-Гарантійний термін становить **24 місяці** *[Гарантійний_талон_2024.pdf, стор. 2]*.
-
-При використанні неоригінального мастила - **6 місяців** *[Інструкція_експлуатації.docx, розділ 4.1]*.
-
-</div>
-
-</v-click>
-
-<v-click>
-
-<div class="mt-4 bg-green-50 p-3 rounded text-sm text-gray-800">
-<b>✨ Переваги:</b><br/>
-✅ Прозорість<br/>
-✅ Можливість верифікації<br/>
-✅ Довіра користувачів
+<div class="mt-4 flex gap-4 justify-center text-sm">
+<div class="bg-green-100 px-3 py-2 rounded text-gray-800">✅ Точна відповідь</div>
+<div class="bg-green-100 px-3 py-2 rounded text-gray-800">✅ Цитати джерел</div>
+<div class="bg-green-100 px-3 py-2 rounded text-gray-800">✅ Без галюцинацій</div>
 </div>
 
 </v-click>
 
 </div>
-
 </div>
 
 ---
