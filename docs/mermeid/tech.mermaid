@@ -1,0 +1,27 @@
+graph LR
+    subgraph "Серверна частина"
+        App["FastAPI"]
+        Service["ChatService"]
+        Engine["ChatEngine"]
+    end
+
+    subgraph "LlamaCloud"
+        Index["Хмарний індекс"]
+        Pipeline["Document Pipeline"]
+        Vector["Векторне сховище"]
+        Rerank["Reranker"]
+    end
+
+    subgraph "OpenAI"
+        LLM["GPT-4o"]
+        Embed["Embeddings"]
+    end
+
+    App --> Service
+    Service --> Engine
+    Engine --> Index
+    Index --> Vector
+    Index --> Rerank
+    Index --> LLM
+    Pipeline --> Embed
+    Embed --> Vector

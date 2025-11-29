@@ -1,0 +1,41 @@
+---
+config:
+  theme: ''
+---
+graph TB
+    subgraph "Клієнтський рівень"
+        UI["Користувацький інтерфейс"]
+        Components["Vue компоненти"]
+        Store["Pinia Store"]
+        WSClient["WebSocket клієнт"]
+        HTTPClient["HTTP клієнт"]
+    end
+
+    subgraph "Серверний рівень"
+        API["REST API"]
+        WSServer["WebSocket сервер"]
+        ChatService["Chat Service"]
+        ChatEngine["Chat Engine"]
+    end
+
+    subgraph "Хмарний рівень"
+        LlamaIndex["LlamaCloudIndex"]
+        Pipeline["Document Pipeline"]
+        VectorStore["Vector Store"]
+        Retriever["Retriever + Reranker"]
+        LLM["GPT-4o"]
+    end
+
+    UI --> Components
+    Components --> Store
+    Store --> WSClient
+    WSClient <-->|" WebSocket "| WSServer
+    Components --> HTTPClient <-->|" REST "| API
+    API --> ChatService
+    WSServer --> ChatService
+    ChatService --> ChatEngine
+    ChatEngine --> LlamaIndex
+    LlamaIndex --> Retriever
+    Retriever --> VectorStore
+    Retriever --> LLM
+    API --> Pipeline

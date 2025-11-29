@@ -5,13 +5,13 @@ config:
 
 graph TB
 A["📚 Галузеві<br/>Документи"] --> B["✂️ Розбиття<br/>Chunking"]
-B --> C1["📄 Chunk 1"]
-B --> C2["📄 Chunk 2"]
-B --> C3["📄 Chunk 3"]
+B --> C1["📄 Chunk 1."]
+B --> C2["📄 Chunk 2."]
+B --> C3["📄 Chunk 3."]
 C1 --> D["🔢 Векторізація<br/>Embedding"]
 C2 --> D
 C3 --> D
-D --> F["(🗄️ Векторна База<br/>Pinecone, Milvus,<br/>Chroma, etc.)"]
+D --> F["🗄️ Векторна База<br/>Pinecone, Milvus,<br/>Chroma"]
 F --> G["📊 Індекс<br/>HNSW/IVF"]
 
 style A fill:#fff9c4,stroke:#f57f17,stroke-width:2px
