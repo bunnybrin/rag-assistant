@@ -520,9 +520,6 @@ layout: default
     <span class="text-gray-300">Використовується <span class="font-bold text-purple-400">та сама модель</span>, що й для документів</span>
   </div>
 </div>
-</v-click>
-
-<v-click>
 <div class="mt-4 p-3 rounded-lg bg-gray-800/30 text-center">
   <span class="text-gray-400">Це забезпечує <span class="font-semibold text-blue-400">семантичну сумісність</span> векторів запиту та документів</span>
 </div>
@@ -538,17 +535,16 @@ layout: default
 
 <div class="flex flex-col items-center">
 <v-click>
-<div class="p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center mb-4">
+<div class="p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center">
   <div class="text-3xl mb-2">🔢</div>
-  <div class="text-sm font-bold text-blue-300">Query Vector</div>
+  <div class="text-sm font-bold text-blue-300 mb-2">Query Vector</div>
+  <div class="text-xs text-green-400 p-2 bg-gray-800/50 rounded font-mono">
+    [0.021, -0.834,<br/>0.156, 0.742,<br/>-0.023, 0.891...]
+  </div>
 </div>
-</v-click>
 
-<v-click>
-<div class="text-3xl text-blue-400 mb-4">↓</div>
-</v-click>
+<div class="text-3xl text-blue-400 mb-4 mt-4">↓</div>
 
-<v-click>
 <div class="p-4 rounded-xl bg-orange-500/10 border-2 border-orange-400/50 text-center">
   <div class="text-4xl mb-2">🔍</div>
   <div class="text-lg font-bold text-orange-300 mb-2">Retriever</div>
@@ -561,7 +557,7 @@ layout: default
 <div class="p-5 rounded-xl bg-green-500/10 border-2 border-green-400/50">
   <div class="text-center mb-4">
     <span class="text-3xl">🗄️</span>
-    <span class="text-lg font-bold text-green-300 ml-2">База знань</span>
+    <span class="text-lg font-bold text-green-300 ml-2">Top-K результатів</span>
   </div>
   <div class="space-y-2">
     <div class="flex items-center gap-2 p-2 rounded bg-green-500/20 border border-green-400/30">
@@ -585,13 +581,6 @@ layout: default
 </v-click>
 
 </div>
-
-<v-click>
-<div class="mt-6 p-4 rounded-lg bg-blue-500/10 border-l-4 border-blue-500 text-center">
-  <span class="text-blue-400 font-semibold">📊 Top-K:</span>
-  <span class="text-gray-300">Повертаємо <span class="font-bold text-blue-400">K найближчих</span> результатів (зазвичай 3-10)</span>
-</div>
-</v-click>
 
 ---
 layout: default
@@ -656,41 +645,49 @@ layout: default
 
 # Конвеєр RAG: Формування промпту
 
-<div class="mt-6">
+<div class="grid grid-cols-7 gap-2 mt-10 items-center">
 
 <v-click>
-<div class="p-4 rounded-xl bg-purple-500/10 border-2 border-purple-400/50 mb-4">
+<div class="col-span-2 p-3 rounded-xl bg-purple-500/10 border-2 border-purple-400/50 h-full">
   <div class="flex items-center gap-2 mb-2">
-    <span class="text-xl">📋</span>
-    <span class="font-bold text-purple-300">Системний промпт</span>
+    <span class="text-lg">📋</span>
+    <span class="text-sm font-bold text-purple-300">Системний промпт</span>
   </div>
-  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono">
-    "Ти — помічник для студентів УжНУ. Відповідай на основі наданого контексту. Якщо інформації немає — скажи про це."
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
+    "Ти — помічник. Відповідай на основі контексту."
   </div>
 </div>
 </v-click>
 
 <v-click>
-<div class="p-4 rounded-xl bg-amber-500/10 border-2 border-amber-400/50 mb-4">
+<div class="text-2xl text-gray-500 text-center">+</div>
+</v-click>
+
+<v-click>
+<div class="col-span-2 p-3 rounded-xl bg-amber-500/10 border-2 border-amber-400/50 h-full">
   <div class="flex items-center gap-2 mb-2">
-    <span class="text-xl">📚</span>
-    <span class="font-bold text-amber-300">Контекст (знайдені chunks)</span>
+    <span class="text-lg">📚</span>
+    <span class="text-sm font-bold text-amber-300">Контекст</span>
   </div>
-  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono max-h-24 overflow-hidden">
-    [1] "Дипломні роботи повинні бути представлені на кафедру не пізніше як за два тижні до захисту..."<br/>
-    [2] "Для бакалаврських і магістерських дипломних робіт передбачена процедура попереднього захисту..."
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
+    [1] "Дипломні роботи..."<br/>
+    [2] "Процедура захисту..."
   </div>
 </div>
 </v-click>
 
 <v-click>
-<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50">
+<div class="text-2xl text-gray-500 text-center">+</div>
+</v-click>
+
+<v-click>
+<div class="col-span-1 p-3 rounded-xl bg-green-500/10 border-2 border-green-400/50 h-full">
   <div class="flex items-center gap-2 mb-2">
-    <span class="text-xl">❓</span>
-    <span class="font-bold text-green-300">Запит користувача</span>
+    <span class="text-lg">❓</span>
+    <span class="text-sm font-bold text-green-300">Запит</span>
   </div>
-  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono">
-    "Які терміни подачі дипломної роботи на кафедру?"
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
+    "Які терміни?"
   </div>
 </div>
 </v-click>
@@ -698,9 +695,15 @@ layout: default
 </div>
 
 <v-click>
-<div class="mt-4 p-3 rounded-lg bg-blue-500/10 border-l-4 border-blue-500 text-center">
-  <span class="text-blue-400 font-semibold">🔗 Результат:</span>
-  <span class="text-gray-300">Один збагачений промпт для LLM</span>
+<div class="flex justify-center mt-6">
+  <div class="text-3xl text-blue-400">↓</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="mt-4 p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center max-w-2xl mx-auto">
+  <span class="text-2xl mr-2">🔗</span>
+  <span class="text-lg font-bold text-blue-300">Збагачений промпт для LLM</span>
 </div>
 </v-click>
 
