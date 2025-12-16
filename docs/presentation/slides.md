@@ -182,8 +182,7 @@ layout: default
 <v-click>
 
 <div class="mt-8 p-4 rounded-lg bg-yellow-500/10 border-l-4 border-yellow-500 text-center">
-  <span class="text-2xl">🤔</span>
-  <span class="text-xl text-yellow-300 font-semibold ml-2">Це RAG?</span>
+  <span class="text-xl text-yellow-300 font-semibold ml-2">Але чи це RAG?</span> <span class="text-2xl">🤔</span>
 </div>
 
 </v-click>
