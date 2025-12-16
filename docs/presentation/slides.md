@@ -194,27 +194,22 @@ layout: default
 
 # Так, це RAG... але є обмеження
 
-<div class="space-y-4 mt-8">
+<div class="space-y-6 mt-12">
 <v-clicks>
 
-<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
-  <span class="text-3xl">❌</span>
-  <span class="text-lg text-red-300">Обмеження контексту <span class="font-bold text-red-400">~128K токенів</span></span>
+<div class="flex items-center gap-4 p-5 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-4xl">❌</span>
+  <span class="text-xl text-red-300">Контекстне вікно <span class="font-bold text-red-400">~128K токенів</span></span>
 </div>
 
-<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
-  <span class="text-3xl">❌</span>
-  <span class="text-lg text-red-300">Весь документ кожен раз = <span class="font-bold text-red-400">витрата $$$</span></span>
+<div class="flex items-center gap-4 p-5 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-4xl">❌</span>
+  <span class="text-xl text-red-300">Документ <span class="font-bold text-red-400">"забувається"</span> після сесії</span>
 </div>
 
-<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
-  <span class="text-3xl">❌</span>
-  <span class="text-lg text-red-300">Немає <span class="font-bold text-red-400">векторного пошуку</span></span>
-</div>
-
-<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
-  <span class="text-3xl">❌</span>
-  <span class="text-lg text-red-300">Не масштабується на <span class="font-bold text-red-400">1000+ документів</span></span>
+<div class="flex items-center gap-4 p-5 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-4xl">❌</span>
+  <span class="text-xl text-red-300">Відправка документа кожен раз = <span class="font-bold text-red-400">зайва витрата токенів</span> та <span class="font-bold text-red-400">UAH</span></span>
 </div>
 
 </v-clicks>
