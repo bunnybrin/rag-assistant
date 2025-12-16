@@ -191,7 +191,7 @@ layout: default
 layout: default
 ---
 
-# Так, це RAG... але є обмеження
+# Так, це RAG... але з обмеженнями
 
 <div class="space-y-6 mt-12">
 <v-clicks>
