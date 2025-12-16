@@ -856,3 +856,73 @@ layout: center
   <img src="./assets/image7.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
 </div>
 
+---
+layout: center
+---
+
+<h1 class="text-center mb-10">Висновки</h1>
+
+<div class="grid grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+<v-click>
+
+<div class="bg-gradient-to-br from-green-900/40 to-green-800/20 p-6 rounded-2xl border border-green-500/30">
+  <div class="text-4xl mb-4 text-center">✅</div>
+  <h3 class="text-xl font-bold text-green-400 mb-3 text-center">RAG — необхідний підхід</h3>
+  <p class="text-gray-300 text-center">
+    Для ефективного використання LLM як галузевого помічника необхідно застосовувати архітектуру RAG
+  </p>
+</div>
+
+</v-click>
+
+<v-click>
+
+<div class="bg-gradient-to-br from-orange-900/40 to-orange-800/20 p-6 rounded-2xl border border-orange-500/30">
+  <div class="text-4xl mb-4 text-center">⚙️</div>
+  <h3 class="text-xl font-bold text-orange-400 mb-3 text-center">Універсальність — складна задача</h3>
+  <p class="text-gray-300 text-sm">
+    Створення універсального помічника вимагає індивідуального налаштування:
+  </p>
+  <ul class="text-gray-400 text-sm mt-2 space-y-1">
+    <li>системного промпта під предметну область</li>
+    <li>стратегії реренкінгу для типів документів</li>
+    <li>параметрів чанкінгу під структуру контенту</li>
+  </ul>
+</div>
+
+</v-click>
+
+</div>
+
+---
+layout: center
+class: text-center
+---
+
+# Дякую за увагу! 🎉
+
+<div class="text-xl mt-8">
+
+## Retrieval-Augmented Generation
+### Майбутнє інтелектуальних помічників
+
+</div>
+
+<div class="mt-12 text-lg opacity-75">
+
+**Чубирка Віктор Васильович**
+
+Ужгородський Національний Університет
+
+2025
+
+</div>
+
+<div class="mt-8">
+
+### Готовий відповісти на ваші запитання 💬
+
+</div>
+
+
