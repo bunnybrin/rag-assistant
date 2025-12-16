@@ -474,3 +474,312 @@ graph LR
 ```
 
 </div>
+
+---
+layout: default
+---
+
+# Конвеєр RAG: Запит користувача та Embedding
+
+<div class="grid grid-cols-3 gap-6 mt-12 items-center">
+
+<v-click>
+<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
+  <div class="text-3xl mb-2">❓</div>
+  <div class="text-sm font-bold text-green-300 mb-2">Запит</div>
+  <div class="text-xs text-gray-400 p-2 bg-gray-800/50 rounded">
+    "Які терміни подачі дипломної роботи?"
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-center">
+  <div class="text-5xl mb-2">🧠</div>
+  <div class="text-xl text-blue-400">→</div>
+  <div class="text-sm text-gray-400 mt-2">Embedding<br/>Model</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center">
+  <div class="text-3xl mb-2">🔢</div>
+  <div class="text-sm font-bold text-blue-300 mb-2">Query Vector</div>
+  <div class="text-xs text-green-400 p-2 bg-gray-800/50 rounded font-mono">
+    [0.021, -0.834,<br/>0.156, 0.742,<br/>-0.023, 0.891...]
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-10 p-4 rounded-lg bg-purple-500/10 border-l-4 border-purple-500">
+  <div class="flex items-center justify-center gap-4">
+    <span class="text-2xl">🔑</span>
+    <span class="text-gray-300">Використовується <span class="font-bold text-purple-400">та сама модель</span>, що й для документів</span>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="mt-4 p-3 rounded-lg bg-gray-800/30 text-center">
+  <span class="text-gray-400">Це забезпечує <span class="font-semibold text-blue-400">семантичну сумісність</span> векторів запиту та документів</span>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Конвеєр RAG: Семантичний пошук
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div class="flex flex-col items-center">
+<v-click>
+<div class="p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center mb-4">
+  <div class="text-3xl mb-2">🔢</div>
+  <div class="text-sm font-bold text-blue-300">Query Vector</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-3xl text-blue-400 mb-4">↓</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-orange-500/10 border-2 border-orange-400/50 text-center">
+  <div class="text-4xl mb-2">🔍</div>
+  <div class="text-lg font-bold text-orange-300 mb-2">Retriever</div>
+  <div class="text-xs text-gray-400">Cosine Similarity</div>
+</div>
+</v-click>
+</div>
+
+<v-click>
+<div class="p-5 rounded-xl bg-green-500/10 border-2 border-green-400/50">
+  <div class="text-center mb-4">
+    <span class="text-3xl">🗄️</span>
+    <span class="text-lg font-bold text-green-300 ml-2">База знань</span>
+  </div>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2 p-2 rounded bg-green-500/20 border border-green-400/30">
+      <span class="text-green-400 font-bold">0.92</span>
+      <span class="text-xs text-gray-300">Chunk про терміни подачі</span>
+    </div>
+    <div class="flex items-center gap-2 p-2 rounded bg-green-500/15 border border-green-400/20">
+      <span class="text-green-400 font-bold">0.87</span>
+      <span class="text-xs text-gray-300">Chunk про дипломні роботи</span>
+    </div>
+    <div class="flex items-center gap-2 p-2 rounded bg-green-500/10 border border-green-400/10">
+      <span class="text-green-400 font-bold">0.81</span>
+      <span class="text-xs text-gray-300">Chunk про вимоги кафедри</span>
+    </div>
+    <div class="flex items-center gap-2 p-2 rounded bg-gray-500/10 border border-gray-400/10">
+      <span class="text-gray-500">0.34</span>
+      <span class="text-xs text-gray-500">Нерелевантний chunk</span>
+    </div>
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-6 p-4 rounded-lg bg-blue-500/10 border-l-4 border-blue-500 text-center">
+  <span class="text-blue-400 font-semibold">📊 Top-K:</span>
+  <span class="text-gray-300">Повертаємо <span class="font-bold text-blue-400">K найближчих</span> результатів (зазвичай 3-10)</span>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Конвеєр RAG: Reranker
+
+<div class="grid grid-cols-3 gap-4 mt-8 items-center">
+
+<v-click>
+<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50">
+  <div class="text-center mb-3">
+    <span class="text-2xl">📋</span>
+    <span class="text-sm font-bold text-green-300 ml-2">Top-K результати</span>
+  </div>
+  <div class="space-y-2 text-xs">
+    <div class="p-2 rounded bg-gray-800/50">1. Chunk про терміни</div>
+    <div class="p-2 rounded bg-gray-800/50">2. Chunk про диплом</div>
+    <div class="p-2 rounded bg-gray-800/50">3. Chunk про кафедру</div>
+    <div class="p-2 rounded bg-gray-800/50">4. Chunk про вимоги</div>
+    <div class="p-2 rounded bg-gray-800/50">5. Chunk про захист</div>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-center">
+  <div class="text-4xl mb-2">🎯</div>
+  <div class="text-3xl text-purple-400">→</div>
+  <div class="text-sm text-gray-400 mt-2">Cross-Encoder<br/>Reranker</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-purple-500/10 border-2 border-purple-400/50">
+  <div class="text-center mb-3">
+    <span class="text-2xl">✨</span>
+    <span class="text-sm font-bold text-purple-300 ml-2">Переранжовано</span>
+  </div>
+  <div class="space-y-2 text-xs">
+    <div class="p-2 rounded bg-purple-500/20 border border-purple-400/30">1. Chunk про терміни <span class="text-purple-400">↑</span></div>
+    <div class="p-2 rounded bg-purple-500/15">2. Chunk про захист <span class="text-green-400">↑↑</span></div>
+    <div class="p-2 rounded bg-purple-500/10">3. Chunk про вимоги <span class="text-green-400">↑</span></div>
+    <div class="p-2 rounded bg-gray-800/50 text-gray-500">4. Chunk про диплом <span class="text-red-400">↓</span></div>
+    <div class="p-2 rounded bg-gray-800/50 text-gray-500">5. Chunk про кафедру <span class="text-red-400">↓</span></div>
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-10 p-3 rounded-lg bg-yellow-500/10 border-l-4 border-yellow-500 text-center">
+  <span class="text-yellow-400 font-semibold">💡</span>
+  <span class="text-gray-300">Reranker аналізує <span class="font-bold text-yellow-400">пару (запит, chunk)</span> разом для кращого розуміння</span>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Конвеєр RAG: Формування промпту
+
+<div class="mt-6">
+
+<v-click>
+<div class="p-4 rounded-xl bg-purple-500/10 border-2 border-purple-400/50 mb-4">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="text-xl">📋</span>
+    <span class="font-bold text-purple-300">Системний промпт</span>
+  </div>
+  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono">
+    "Ти — помічник для студентів УжНУ. Відповідай на основі наданого контексту. Якщо інформації немає — скажи про це."
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-amber-500/10 border-2 border-amber-400/50 mb-4">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="text-xl">📚</span>
+    <span class="font-bold text-amber-300">Контекст (знайдені chunks)</span>
+  </div>
+  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono max-h-24 overflow-hidden">
+    [1] "Дипломні роботи повинні бути представлені на кафедру не пізніше як за два тижні до захисту..."<br/>
+    [2] "Для бакалаврських і магістерських дипломних робіт передбачена процедура попереднього захисту..."
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="text-xl">❓</span>
+    <span class="font-bold text-green-300">Запит користувача</span>
+  </div>
+  <div class="text-xs text-gray-400 p-3 bg-gray-900/50 rounded font-mono">
+    "Які терміни подачі дипломної роботи на кафедру?"
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-4 p-3 rounded-lg bg-blue-500/10 border-l-4 border-blue-500 text-center">
+  <span class="text-blue-400 font-semibold">🔗 Результат:</span>
+  <span class="text-gray-300">Один збагачений промпт для LLM</span>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Конвеєр RAG: Генерація відповіді
+
+<div class="grid grid-cols-2 gap-8 mt-8">
+
+<div class="flex flex-col items-center justify-center">
+<v-click>
+<div class="p-5 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center mb-4">
+  <div class="text-5xl mb-3">🤖</div>
+  <div class="text-xl font-bold text-blue-300">LLM</div>
+  <div class="text-sm text-gray-400 mt-2">GPT-4 / Claude / Llama</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-3xl text-green-400 mb-4">↓</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
+  <div class="text-3xl mb-2">✅</div>
+  <div class="text-lg font-bold text-green-300">Відповідь</div>
+</div>
+</v-click>
+</div>
+
+<v-click>
+<div class="p-5 rounded-xl bg-gray-800/50 border-2 border-gray-600">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="text-2xl">💬</span>
+    <span class="font-semibold text-gray-300">Відповідь системи:</span>
+  </div>
+  <div class="p-4 rounded-lg bg-gray-900/50 text-gray-200 text-sm leading-relaxed">
+    "Згідно з Положенням про дипломну роботу, <span class="text-green-400 font-semibold">дипломні роботи повинні бути представлені на кафедру не пізніше як за два тижні до захисту</span>.
+    <br/><br/>
+    Також для бакалаврських і магістерських робіт передбачена процедура попереднього захисту."
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-6 p-4 rounded-lg bg-green-500/10 border-l-4 border-green-500 text-center">
+  <span class="text-green-400 font-semibold">✨ Результат:</span>
+  <span class="text-gray-300">Точна відповідь на основі <span class="font-bold text-green-400">актуальних даних</span> з бази знань</span>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Конвеєр RAG
+
+<div class="flex justify-center items-center h-80">
+
+```mermaid {scale: 0.7}
+graph LR
+    A["❓ Запит користувача"] --> B["🔢 Embedding"]
+    B --> C["🔍 Пошуковий агент<br/>(Retriever)"]
+    C <--> D["📚 База знань<br/>(Контекст)"]
+    C --> E["📝 Системний промпт"]
+    E --> F["🤖 LLM"]
+    F --> G["✅ Відповідь"]
+
+    style A fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#1f2937
+    style B fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#1f2937
+    style C fill:#ffccbc,stroke:#d84315,stroke-width:2px,color:#1f2937
+    style D fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#1f2937
+    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#1f2937
+    style F fill:#b3e5fc,stroke:#0277bd,stroke-width:2px,color:#1f2937
+    style G fill:#b2dfdb,stroke:#00695c,stroke-width:2px,color:#1f2937
+```
+
+</div>
