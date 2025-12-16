@@ -97,3 +97,62 @@ Retrieval-Augmented Generation — архітектурний підхід, що
 </div>
 
 </v-click>
+
+---
+layout: default
+---
+
+# RAG на практиці
+
+<v-click>
+
+<div class="p-5 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-cyan-500/20 border-2 border-cyan-400/50 text-center mb-6">
+  <div class="text-4xl mb-2">📚 📄 📑 📰 📋</div>
+  <div class="text-2xl font-bold text-cyan-300">База Знань</div>
+  <div class="text-sm text-gray-400 mt-1">PDF • DOCX • TXT • HTML • Markdown</div>
+</div>
+
+</v-click>
+
+<div class="grid grid-cols-3 gap-4">
+<v-clicks>
+
+<div class="p-4 rounded-xl bg-blue-500/15 border-2 border-blue-400/50 text-center">
+  <div class="text-4xl font-black text-blue-400 mb-2">R</div>
+  <div class="text-2xl mb-2">🔍</div>
+  <div class="text-sm font-semibold text-blue-300">Retrieval</div>
+  <div class="text-xs text-gray-400 mt-2">Шукаємо релевантні<br/>🧩 фрагменти</div>
+</div>
+
+<div class="p-4 rounded-xl bg-purple-500/15 border-2 border-purple-400/50 text-center">
+  <div class="text-4xl font-black text-purple-400 mb-2">A</div>
+  <div class="text-2xl mb-2">🔗</div>
+  <div class="text-sm font-semibold text-purple-300">Augmented</div>
+  <div class="text-xs text-gray-400 mt-2">Додаємо<br/>📋 системний промпт</div>
+</div>
+
+<div class="p-4 rounded-xl bg-green-500/15 border-2 border-green-400/50 text-center">
+  <div class="text-4xl font-black text-green-400 mb-2">G</div>
+  <div class="text-2xl mb-2">✨</div>
+  <div class="text-sm font-semibold text-green-300">Generation</div>
+  <div class="text-xs text-gray-400 mt-2">🤖 LLM генерує<br/>💬 відповідь</div>
+</div>
+
+</v-clicks>
+</div>
+
+<v-click>
+
+<div class="flex justify-center items-center gap-3 mt-6 text-2xl">
+  <span>📚</span>
+  <span class="text-blue-400 text-blue">←</span>
+  <span class="font-bold text-blue-400">R</span>
+  <span class="text-blue">→</span>
+  <span class="font-bold text-purple-400">A</span>
+  <span class="text-purple-400">→</span>
+  <span class="font-bold text-green-400">G</span>
+  <span class="text-green-400">→</span>
+  <span>💬</span>
+</div>
+
+</v-click>
