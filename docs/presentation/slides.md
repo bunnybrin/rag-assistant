@@ -643,121 +643,78 @@ layout: default
 layout: default
 ---
 
-# Конвеєр RAG: Формування промпту
-
-<div class="grid grid-cols-7 gap-2 mt-10 items-center">
-
-<v-click>
-<div class="col-span-2 p-3 rounded-xl bg-purple-500/10 border-2 border-purple-400/50 h-full">
-  <div class="flex items-center gap-2 mb-2">
-    <span class="text-lg">📋</span>
-    <span class="text-sm font-bold text-purple-300">Системний промпт</span>
-  </div>
-  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
-    "Ти — помічник. Відповідай на основі контексту."
-  </div>
-</div>
-</v-click>
-
-<v-click>
-<div class="text-2xl text-gray-500 text-center">+</div>
-</v-click>
-
-<v-click>
-<div class="col-span-2 p-3 rounded-xl bg-amber-500/10 border-2 border-amber-400/50 h-full">
-  <div class="flex items-center gap-2 mb-2">
-    <span class="text-lg">📚</span>
-    <span class="text-sm font-bold text-amber-300">Контекст</span>
-  </div>
-  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
-    [1] "Дипломні роботи..."<br/>
-    [2] "Процедура захисту..."
-  </div>
-</div>
-</v-click>
-
-<v-click>
-<div class="text-2xl text-gray-500 text-center">+</div>
-</v-click>
-
-<v-click>
-<div class="col-span-1 p-3 rounded-xl bg-green-500/10 border-2 border-green-400/50 h-full">
-  <div class="flex items-center gap-2 mb-2">
-    <span class="text-lg">❓</span>
-    <span class="text-sm font-bold text-green-300">Запит</span>
-  </div>
-  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
-    "Які терміни?"
-  </div>
-</div>
-</v-click>
-
-</div>
-
-<v-click>
-<div class="flex justify-center mt-6">
-  <div class="text-3xl text-blue-400">↓</div>
-</div>
-</v-click>
-
-<v-click>
-<div class="mt-4 p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center max-w-2xl mx-auto">
-  <span class="text-2xl mr-2">🔗</span>
-  <span class="text-lg font-bold text-blue-300">Збагачений промпт для LLM</span>
-</div>
-</v-click>
-
----
-layout: default
----
-
 # Конвеєр RAG: Генерація відповіді
 
-<div class="grid grid-cols-2 gap-8 mt-8">
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+<div class="space-y-2">
+<v-click>
+<div class="p-2 rounded-lg bg-purple-500/10 border border-purple-400/50">
+  <div class="flex items-center gap-2 mb-1">
+    <span class="text-sm">📋</span>
+    <span class="text-xs font-bold text-purple-300">Системний промпт</span>
+  </div>
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono leading-relaxed">
+    "Відповідай лише на основі джерел.<br/>
+    Ставь посилання [1][2].<br/>
+    Відповідай українською."
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-2 rounded-lg bg-amber-500/10 border border-amber-400/50">
+  <div class="flex items-center gap-2 mb-1">
+    <span class="text-sm">📚</span>
+    <span class="text-xs font-bold text-amber-300">Контекст (після reranker)</span>
+  </div>
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded space-y-1">
+    <div>[1] Chunk про терміни подачі</div>
+    <div>[2] Chunk про захист</div>
+    <div>[3] Chunk про вимоги</div>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-2 rounded-lg bg-green-500/10 border border-green-400/50">
+  <div class="flex items-center gap-2 mb-1">
+    <span class="text-sm">❓</span>
+    <span class="text-xs font-bold text-green-300">Запит</span>
+  </div>
+  <div class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded font-mono">
+    "Які терміни подачі дипломної роботи?"
+  </div>
+</div>
+</v-click>
+</div>
 
 <div class="flex flex-col items-center justify-center">
 <v-click>
-<div class="p-5 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center mb-4">
-  <div class="text-5xl mb-3">🤖</div>
-  <div class="text-xl font-bold text-blue-300">LLM</div>
-  <div class="text-sm text-gray-400 mt-2">GPT-4 / Claude / Llama</div>
+<div class="p-3 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center mb-3">
+  <div class="text-4xl">🤖</div>
+  <div class="text-sm font-bold text-blue-300">LLM</div>
 </div>
 </v-click>
 
 <v-click>
-<div class="text-3xl text-green-400 mb-4">↓</div>
+<div class="text-2xl text-green-400 mb-3">↓</div>
 </v-click>
 
 <v-click>
-<div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
-  <div class="text-3xl mb-2">✅</div>
-  <div class="text-lg font-bold text-green-300">Відповідь</div>
-</div>
-</v-click>
-</div>
-
-<v-click>
-<div class="p-5 rounded-xl bg-gray-800/50 border-2 border-gray-600">
-  <div class="flex items-center gap-2 mb-3">
-    <span class="text-2xl">💬</span>
-    <span class="font-semibold text-gray-300">Відповідь системи:</span>
+<div class="p-3 rounded-xl bg-gray-800/50 border-2 border-gray-600">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="text-lg">💬</span>
+    <span class="text-sm font-semibold text-gray-300">Відповідь:</span>
   </div>
-  <div class="p-4 rounded-lg bg-gray-900/50 text-gray-200 text-sm leading-relaxed">
-    "Згідно з Положенням про дипломну роботу, <span class="text-green-400 font-semibold">дипломні роботи повинні бути представлені на кафедру не пізніше як за два тижні до захисту</span>.
-    <br/><br/>
-    Також для бакалаврських і магістерських робіт передбачена процедура попереднього захисту."
+  <div class="p-2 rounded-lg bg-gray-900/50 text-gray-200 text-xs leading-relaxed">
+    "Дипломні роботи повинні бути представлені на кафедру <span class="text-green-400 font-semibold">не пізніше як за два тижні до захисту</span> <span class="text-blue-400">[1]</span>."
   </div>
 </div>
 </v-click>
-
 </div>
 
-<v-click>
-<div class="mt-6 p-4 rounded-lg bg-green-500/10 border-l-4 border-green-500 text-center">
-  <span class="text-green-400 font-semibold">✨ Результат:</span>
-  <span class="text-gray-300">Точна відповідь на основі <span class="font-bold text-green-400">актуальних даних</span> з бази знань</span>
 </div>
-</v-click>
 
 ---
 layout: default
@@ -786,3 +743,145 @@ graph LR
 ```
 
 </div>
+
+---
+layout: center
+---
+
+# Демонстрація системи
+
+<div class="text-center mt-12">
+<v-click>
+
+<div class="text-6xl mb-6">🖥️</div>
+<div class="text-2xl text-gray-300 mb-4">Практична реалізація RAG-системи</div>
+<div class="text-lg text-gray-500">Галузевий помічник для роботи з документами</div>
+
+</v-click>
+</div>
+
+---
+layout: center
+---
+
+# Інтерфейс екрану документів
+
+<v-click>
+<div class="text-gray-400 mb-4 text-center">
+Екран, де користувач може переглянути документи, з якими він може працювати
+</div>
+
+
+<div class="flex justify-center">
+  <img src="./assets/image6.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Відображення документа в системі
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+При кліку на документ користувач може переглянути його відображення в системі, по якому відбувається пошук
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image1.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Інтерфейс головного екрану
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+Головний екран системи для взаємодії з галузевим помічником
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image4.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Приклад роботи галузевого помічника
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+Демонстрація роботи RAG-системи: запит користувача та відповідь на основі документів
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image2.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Верифікація джерела відповіді
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+Можливість перевірити джерело, з якого система сформувала відповідь
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image8.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Розуміння контексту розмови
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+Система розуміє контекст діалогу — запит "40%" автоматично пов'язується з попереднім обговоренням відсотку унікальності
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image3.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
+
+---
+layout: center
+---
+
+# Коли система не може відповісти
+
+<v-click>
+
+<div class="text-gray-400 mb-4 text-center">
+Приклад ситуації, коли система не може надати відповідь на основі наявних джерел
+</div>
+
+<div class="flex justify-center">
+  <img src="./assets/image7.png" class="rounded-xl border-2 border-gray-600 max-h-96" />
+</div>
+
+</v-click>
