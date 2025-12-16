@@ -413,49 +413,46 @@ layout: default
 layout: default
 ---
 
-# Етап індексації: Vector Database
+# Етап індексації: Збереження в базу знань
 
+<div class="flex items-center justify-center gap-12 mt-12">
+
+<div class="flex flex-col gap-3">
 <v-click>
-<div class="flex justify-center mb-6">
-  <div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
-    <div class="text-5xl mb-2">🗄️</div>
-    <div class="text-2xl font-bold text-green-400">ChromaDB</div>
-  </div>
+<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+  <span class="text-xs font-mono text-green-400">[0.021, -0.834, 0.156, ...]</span>
 </div>
 </v-click>
 
-<div class="space-y-3">
-<v-clicks>
-
-<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
-  <span class="text-sm font-mono text-gray-500 w-12">ID: 1</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs font-mono text-green-400 flex-1">[0.021, -0.834, 0.156...]</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs text-gray-300 flex-1">"Перевірку на плагіат..."</span>
+<v-click>
+<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+  <span class="text-xs font-mono text-green-400">[0.156, 0.742, -0.023, ...]</span>
 </div>
+</v-click>
 
-<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
-  <span class="text-sm font-mono text-gray-500 w-12">ID: 2</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs font-mono text-green-400 flex-1">[0.156, 0.742, -0.023...]</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs text-gray-300 flex-1">"Методичні рекомендації..."</span>
+<v-click>
+<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+  <span class="text-xs font-mono text-green-400">[-0.023, 0.891, 0.234, ...]</span>
 </div>
-
-<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
-  <span class="text-sm font-mono text-gray-500 w-12">ID: 3</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs font-mono text-green-400 flex-1">[-0.023, 0.891, 0.234...]</span>
-  <span class="text-blue-400">→</span>
-  <span class="text-xs text-gray-300 flex-1">"Оформлення дипломної..."</span>
-</div>
-
-</v-clicks>
+</v-click>
 </div>
 
 <v-click>
-<div class="mt-6 p-4 rounded-lg bg-green-500/10 border-l-4 border-green-500 text-center">
+<div class="text-5xl text-green-400">→</div>
+</v-click>
+
+<v-click>
+<div class="p-6 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
+  <div class="text-5xl mb-3">🗄️</div>
+  <div class="text-xl font-bold text-green-400">База знань</div>
+  <div class="text-sm text-gray-400 mt-2">Vector Database</div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-10 p-4 rounded-lg bg-green-500/10 border-l-4 border-green-500 text-center">
   <span class="text-2xl">✅</span>
   <span class="text-xl text-green-300 font-semibold ml-2">База знань готова до пошуку!</span>
 </div>
