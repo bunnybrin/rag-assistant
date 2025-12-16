@@ -43,9 +43,11 @@ layout: default
 
 <v-clicks>
 
-*  Світ відходить від "загальних чат-ботів" до систем, які розуміються на нюансах конкретної галузі.
-*  Близько **80%** галузевих знань зберігаються в неструктурованому виді, які складно використовувати для швидкого пошуку.
-*  Зростає потреба в системах, які будуть допомагати людині орієнтуватись у великій кількості неструктурованих документів.
+* Світ відходить від "загальних чат-ботів" до систем, які розуміються на нюансах конкретної галузі.
+* Близько **80%** галузевих знань зберігаються в неструктурованому виді, які складно використовувати для швидкого
+  пошуку.
+* Зростає потреба в системах, які будуть допомагати людині орієнтуватись у великій кількості неструктурованих
+  документів.
 
 </v-clicks>
 
@@ -220,7 +222,6 @@ layout: default
 
 # Керуючись best practices, мною була розроблена архітектура
 
-
 <div class="grid grid-cols-2 gap-8 mt-12">
 
 <v-click>
@@ -278,7 +279,7 @@ layout: default
   <div class="flex gap-4 justify-center text-4xl mb-4">
     <span>📄</span><span>📝</span><span>📋</span><span>🌐</span>
   </div>
-  <div class="text-xl font-bold text-amber-300 mb-2">Великий документ</div>
+  <div class="text-xl font-bold text-amber-300 mb-2">Великі документи</div>
   <div class="grid grid-cols-5 gap-1 mt-4">
     <div class="h-2 bg-amber-400/60 rounded"></div>
     <div class="h-2 bg-amber-400/50 rounded"></div>
@@ -325,10 +326,6 @@ layout: default
     <span class="text-xs text-gray-400">Chunk 1</span>
   </div>
   <div class="flex items-center gap-2">
-    <div style="width: 18px; height: 12px; background: linear-gradient(90deg, rgba(251, 146, 60, 0.7), rgba(74, 222, 128, 0.7)); border-radius: 3px;"></div>
-    <span class="text-xs text-purple-300">Overlap</span>
-  </div>
-  <div class="flex items-center gap-2">
     <div style="width: 18px; height: 12px; background: rgba(74, 222, 128, 0.7); border-radius: 3px;"></div>
     <span class="text-xs text-gray-400">Chunk 2</span>
   </div>
@@ -343,6 +340,10 @@ layout: default
   <div class="flex items-center gap-2">
     <div style="width: 18px; height: 12px; background: rgba(244, 114, 182, 0.7); border-radius: 3px;"></div>
     <span class="text-xs text-gray-400">Chunk 5</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <div style="width: 18px; height: 12px; background: linear-gradient(90deg, rgba(251, 146, 60, 0.7), rgba(74, 222, 128, 0.7)); border-radius: 3px;"></div>
+    <span class="text-xs text-purple-300">Overlap</span>
   </div>
 </div>
 </v-click>
@@ -419,21 +420,15 @@ layout: default
 
 <div class="flex flex-col gap-3">
 <v-click>
-<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
-  <span class="text-xs font-mono text-green-400">[0.021, -0.834, 0.156, ...]</span>
-</div>
-</v-click>
-
-<v-click>
-<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
-  <span class="text-xs font-mono text-green-400">[0.156, 0.742, -0.023, ...]</span>
-</div>
-</v-click>
-
-<v-click>
-<div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
-  <span class="text-xs font-mono text-green-400">[-0.023, 0.891, 0.234, ...]</span>
-</div>
+    <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+      <span class="text-xs font-mono text-green-400">[0.021, -0.834, 0.156, ...]</span>
+    </div>
+    <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+      <span class="text-xs font-mono text-green-400">[0.156, 0.742, -0.023, ...]</span>
+    </div>
+    <div class="p-3 rounded-lg bg-blue-500/10 border border-blue-400/50">
+      <span class="text-xs font-mono text-green-400">[-0.023, 0.891, 0.234, ...]</span>
+    </div>
 </v-click>
 </div>
 
@@ -457,3 +452,25 @@ layout: default
   <span class="text-xl text-green-300 font-semibold ml-2">База знань готова до пошуку!</span>
 </div>
 </v-click>
+
+
+---
+layout: default
+---
+
+# Етап індексації RAG
+
+<div class="flex justify-center items-center h-80">
+
+```mermaid {scale: 0.8}
+graph LR
+    A["📚 Documents<br/>(Завантаження документів)"] --> B["✂️ Chunking<br/>(Нарізання на фрагменти)"]
+    B --> D["🔢 Embedding<br/>(Векторизація тексту)"]
+    D --> E["🗄️ Vector DB<br/>(Збереження)"]
+    style A fill: #fff9c4, stroke: #f57f17, stroke-width: 2px, color: #1f2937
+    style B fill: #ffccbc, stroke: #d84315, stroke-width: 2px, color: #1f2937
+    style D fill: #b3e5fc, stroke: #0277bd, stroke-width: 2px, color: #1f2937
+    style E fill: #c8e6c9, stroke: #388e3c, stroke-width: 2px, color: #1f2937
+```
+
+</div>
