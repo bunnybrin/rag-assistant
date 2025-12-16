@@ -213,3 +213,242 @@ layout: default
 
 </v-clicks>
 </div>
+
+---
+layout: default
+---
+
+# Керуючись best practices, мною була розроблена архітектура
+
+
+<div class="grid grid-cols-2 gap-8 mt-12">
+
+<v-click>
+<div class="p-6 rounded-xl bg-amber-500/10 border-2 border-amber-400/50 text-center">
+  <div class="text-5xl mb-3">📚</div>
+  <div class="text-2xl font-bold text-amber-400 mb-2">База знань</div>
+  <div class="text-sm text-gray-400">Knowledge Base</div>
+  <div class="mt-4 p-3 rounded-lg bg-amber-500/10">
+    <div class="text-sm font-semibold text-amber-300">📥 Етап індексації</div>
+    <div class="text-xs text-gray-400 mt-1">Виконується один раз або при оновленні документів</div>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-6 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center">
+  <div class="text-5xl mb-3">⚡</div>
+  <div class="text-2xl font-bold text-blue-400 mb-2">Конвеєр RAG</div>
+  <div class="text-sm text-gray-400">RAG Pipeline</div>
+  <div class="mt-4 p-3 rounded-lg bg-blue-500/10">
+    <div class="text-sm font-semibold text-blue-300">🔄 Етап виконання</div>
+    <div class="text-xs text-gray-400 mt-1">Виконується в реальному часі для кожного запиту</div>
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+
+<div class="mt-8 text-center text-gray-500">
+Розглянемо кожен компонент детальніше...
+</div>
+
+</v-click>
+
+
+---
+layout: default
+---
+
+# Етап індексації: Завантаження документів
+
+<div class="flex flex-col items-center mt-4">
+
+<v-click>
+<div class="flex items-center gap-4 mb-6">
+  <span class="text-5xl">👤</span>
+  <span class="text-3xl text-gray-400">завантажує</span>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 border-2 border-amber-400/50 text-center">
+  <div class="flex gap-4 justify-center text-4xl mb-4">
+    <span>📄</span><span>📝</span><span>📋</span><span>🌐</span>
+  </div>
+  <div class="text-xl font-bold text-amber-300 mb-2">Великий документ</div>
+  <div class="grid grid-cols-5 gap-1 mt-4">
+    <div class="h-2 bg-amber-400/60 rounded"></div>
+    <div class="h-2 bg-amber-400/50 rounded"></div>
+    <div class="h-2 bg-amber-400/60 rounded"></div>
+    <div class="h-2 bg-amber-400/50 rounded"></div>
+    <div class="h-2 bg-amber-400/60 rounded"></div>
+    <div class="h-2 bg-amber-400/50 rounded"></div>
+    <div class="h-2 bg-amber-400/60 rounded"></div>
+    <div class="h-2 bg-amber-400/50 rounded"></div>
+    <div class="h-2 bg-amber-400/60 rounded"></div>
+    <div class="h-2 bg-amber-400/50 rounded"></div>
+  </div>
+  <div class="text-sm text-gray-400 mt-3">PDF • DOCX • TXT • HTML • Markdown</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="mt-6 p-4 rounded-lg bg-amber-500/10 border-l-4 border-amber-500">
+  <span class="text-amber-400 font-semibold">📊 Приклад:</span>
+  <span class="text-gray-300">10,000+ сторінок корпоративної документації</span>
+</div>
+</v-click>
+
+</div>
+
+---
+layout: default
+---
+
+# Етап індексації: Chunking
+
+<v-click>
+<div class="p-3 rounded-xl bg-gray-800/20 border border-gray-700">
+  <div class="text-xs leading-relaxed text-gray-100" style="line-height: 1.9;">
+    <span style="background: rgba(251, 146, 60, 0.7); padding: 3px 1px; box-decoration-break: clone; -webkit-box-decoration-break: clone;">Згідно «Положення про дипломну роботу (дипломний проект)», затвердженого Вченою радою ДВНЗ «УжНУ» (протокол № 14 від 13.12.2016 року) (зі змінами) дипломні роботи повинні бути виконані і представлені на кафедру не пізніше як за два тижні до захисту. На етапі представлення матеріалів робіт для розгляду на засіданні кафедри, проводиться перевірка на академічний плагіат.</span><span style="background: linear-gradient(90deg, rgba(251, 146, 60, 0.7) 0%, rgba(74, 222, 128, 0.7) 100%); padding: 3px 1px; box-decoration-break: clone; -webkit-box-decoration-break: clone;"> Перевірка робіт здобувачів освіти на унікальність проводиться на основі наданого електронного варіанту роботи у форматах</span><span style="background: rgba(74, 222, 128, 0.7); padding: 3px 1px; box-decoration-break: clone; -webkit-box-decoration-break: clone;"> *.docx (*.doc) або *.pdf, за допомогою системи «StrikePlagiarism». Усі наукові роботи, що надійшли після офіційно встановленого терміну, можуть бути прийняті тільки за спеціальним розпорядженням завідувача кафедри чи за умови встановлення додаткових термінів здачі, які також визначає кафедра.</span><span style="background: linear-gradient(90deg, rgba(74, 222, 128, 0.7) 0%, rgba(96, 165, 250, 0.7) 100%); padding: 3px 1px; box-decoration-break: clone; -webkit-box-decoration-break: clone;"> Для бакалаврських і магістерських дипломних робіт передбачена процедура попереднього захисту.</span><span style="background: rgba(96, 165, 250, 0.7); padding: 3px 1px; box-decoration-break: clone; -webkit-box-decoration-break: clone;"> Наукові роботи студентів, які мають академічну заборгованість, до захисту не допускаються. Захист курсових робіт проводиться у присутності комісії у складі наукового керівника та членів кафедри. Захист бакалаврських і магістерських робіт відбувається на відкритому засіданні Екзаменаційної комісії (ЕК).</span>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="flex gap-5 justify-center mt-3">
+  <div class="flex items-center gap-2">
+    <div style="width: 20px; height: 14px; background: rgba(251, 146, 60, 0.7); border-radius: 3px;"></div>
+    <span class="text-xs text-gray-400">Chunk 1</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <div style="width: 20px; height: 14px; background: linear-gradient(90deg, rgba(251, 146, 60, 0.7), rgba(74, 222, 128, 0.7)); border-radius: 3px;"></div>
+    <span class="text-xs text-purple-300">Overlap</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <div style="width: 20px; height: 14px; background: rgba(74, 222, 128, 0.7); border-radius: 3px;"></div>
+    <span class="text-xs text-gray-400">Chunk 2</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <div style="width: 20px; height: 14px; background: rgba(96, 165, 250, 0.7); border-radius: 3px;"></div>
+    <span class="text-xs text-gray-400">Chunk 3</span>
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="flex gap-4 justify-center mt-3">
+  <div class="p-2 px-3 rounded-lg bg-gray-800/50 flex items-center gap-2">
+    <span class="text-base">📏</span>
+    <span class="text-xs text-gray-400">~512 токенів на chunk</span>
+  </div>
+  <div class="p-2 px-3 rounded-lg bg-purple-500/20 border border-purple-400/30 flex items-center gap-2">
+    <span class="text-base">🔄</span>
+    <span class="text-xs text-purple-300">Overlap — збереження контексту</span>
+  </div>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Етап індексації: Embedding
+
+<div class="grid grid-cols-3 gap-6 mt-8 items-center">
+
+<v-click>
+<div class="p-4 rounded-xl bg-orange-500/10 border-2 border-orange-400/50 text-center">
+  <div class="text-3xl mb-2">📝</div>
+  <div class="text-sm font-bold text-orange-300 mb-2">Chunk</div>
+  <div class="text-xs text-gray-400 p-2 bg-gray-800/50 rounded font-mono">
+    "Перевірку на плагіат здійснюють..."
+  </div>
+</div>
+</v-click>
+
+<v-click>
+<div class="text-center">
+  <div class="text-5xl mb-2">🧠</div>
+  <div class="text-xl text-blue-400">→</div>
+  <div class="text-sm text-gray-400 mt-2">Embedding<br/>Model</div>
+</div>
+</v-click>
+
+<v-click>
+<div class="p-4 rounded-xl bg-blue-500/10 border-2 border-blue-400/50 text-center">
+  <div class="text-3xl mb-2">🔢</div>
+  <div class="text-sm font-bold text-blue-300 mb-2">Vector</div>
+  <div class="text-xs text-green-400 p-2 bg-gray-800/50 rounded font-mono">
+    [0.021, -0.834,<br/>0.156, 0.742,<br/>-0.023, 0.891...]
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+<div class="mt-8 p-4 rounded-lg bg-blue-500/10 border-l-4 border-blue-500 text-center">
+  <div class="flex items-center justify-center gap-4">
+    <span class="text-2xl">🤖</span>
+    <span class="text-gray-300">Модель: <span class="font-bold text-blue-400">text-embedding-3-small</span></span>
+    <span class="text-gray-500">|</span>
+    <span class="text-gray-300">Розмірність: <span class="font-bold text-blue-400">1536</span></span>
+  </div>
+</div>
+</v-click>
+
+---
+layout: default
+---
+
+# Етап індексації: Vector Database
+
+<v-click>
+<div class="flex justify-center mb-6">
+  <div class="p-4 rounded-xl bg-green-500/10 border-2 border-green-400/50 text-center">
+    <div class="text-5xl mb-2">🗄️</div>
+    <div class="text-2xl font-bold text-green-400">ChromaDB</div>
+  </div>
+</div>
+</v-click>
+
+<div class="space-y-3">
+<v-clicks>
+
+<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+  <span class="text-sm font-mono text-gray-500 w-12">ID: 1</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs font-mono text-green-400 flex-1">[0.021, -0.834, 0.156...]</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs text-gray-300 flex-1">"Перевірку на плагіат..."</span>
+</div>
+
+<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+  <span class="text-sm font-mono text-gray-500 w-12">ID: 2</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs font-mono text-green-400 flex-1">[0.156, 0.742, -0.023...]</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs text-gray-300 flex-1">"Методичні рекомендації..."</span>
+</div>
+
+<div class="flex items-center gap-4 p-3 rounded-lg bg-gray-800/50 border border-gray-700">
+  <span class="text-sm font-mono text-gray-500 w-12">ID: 3</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs font-mono text-green-400 flex-1">[-0.023, 0.891, 0.234...]</span>
+  <span class="text-blue-400">→</span>
+  <span class="text-xs text-gray-300 flex-1">"Оформлення дипломної..."</span>
+</div>
+
+</v-clicks>
+</div>
+
+<v-click>
+<div class="mt-6 p-4 rounded-lg bg-green-500/10 border-l-4 border-green-500 text-center">
+  <span class="text-2xl">✅</span>
+  <span class="text-xl text-green-300 font-semibold ml-2">База знань готова до пошуку!</span>
+</div>
+</v-click>
