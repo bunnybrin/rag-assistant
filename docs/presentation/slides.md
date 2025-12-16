@@ -156,3 +156,66 @@ layout: default
 </div>
 
 </v-click>
+
+---
+layout: default
+---
+
+# Завантажити документ у ChatGPT
+
+<div class="grid grid-cols-2 gap-6">
+
+<v-click>
+<div class="rounded-xl overflow-hidden border-2 border-gray-600">
+  <img src="./assets/gpt-question.png" class="w-full" />
+</div>
+</v-click>
+
+<v-click>
+<div class="rounded-xl overflow-hidden border-2 border-gray-600">
+  <img src="./assets/gpt-answer.png" class="w-full" />
+</div>
+</v-click>
+
+</div>
+
+<v-click>
+
+<div class="mt-8 p-4 rounded-lg bg-yellow-500/10 border-l-4 border-yellow-500 text-center">
+  <span class="text-2xl">🤔</span>
+  <span class="text-xl text-yellow-300 font-semibold ml-2">Це RAG?</span>
+</div>
+
+</v-click>
+
+---
+layout: default
+---
+
+# Так, це RAG... але є обмеження
+
+<div class="space-y-4 mt-8">
+<v-clicks>
+
+<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-3xl">❌</span>
+  <span class="text-lg text-red-300">Обмеження контексту <span class="font-bold text-red-400">~128K токенів</span></span>
+</div>
+
+<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-3xl">❌</span>
+  <span class="text-lg text-red-300">Весь документ кожен раз = <span class="font-bold text-red-400">витрата $$$</span></span>
+</div>
+
+<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-3xl">❌</span>
+  <span class="text-lg text-red-300">Немає <span class="font-bold text-red-400">векторного пошуку</span></span>
+</div>
+
+<div class="flex items-center gap-4 p-4 rounded-xl bg-red-500/10 border-2 border-red-500/30">
+  <span class="text-3xl">❌</span>
+  <span class="text-lg text-red-300">Не масштабується на <span class="font-bold text-red-400">1000+ документів</span></span>
+</div>
+
+</v-clicks>
+</div>
